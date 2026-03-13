@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Round The Clock Notary — Hood County, TX</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:wght@400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Raleway', sans-serif; background: #0d1b2e; color: #fff; overflow-x: hidden; }
+
+/* ── SKIP LINK ── */
+.skip-link {
+  position: absolute; top: -40px; left: 0;
+  background: #c9a84c; color: #0d1b2e;
+  padding: 8px 16px; font-weight: 700; font-size: 0.85rem;
+  z-index: 9999; text-decoration: none; border-radius: 0 0 8px 0;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 0; }
+
+/* ── VIDEO BG ── */
+.video-bg {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; z-index: 0;
+  pointer-events: none;
+}
+
+.page-wrap { position: relative; z-index: 2; }
+
+/* ── HERO ── */
+.hero-header {
+  width: 100%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 28px 20px 20px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.50) 0%,
+    rgba(255,255,255,0.18) 55%,
+    rgba(255,255,255,0.0) 100%);
+}
+.hero-header img {
+  width: 88%;
+  max-width: 360px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ── TRUST BAR ── */
+.trust-bar {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600; letter-spacing: 0.12em;
+  color: #c9a84c;
+  padding: 0 16px 16px;
+  line-height: 1.6;
+}
+
+/* ── BUTTONS ── */
+.steps-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: transparent;
+}
+.step-btn {
+  display: block; text-decoration: none;
+  mix-blend-mode: lighten;
+  transition: filter 0.2s;
+}
+.step-btn:active { filter: brightness(1.15); }
+.step-btn img { width: 100%; height: auto; display: block; }
+.step-btn-static {
+  display: block; cursor: default;
+  mix-blend-mode: lighten;
+}
+.step-btn-static img { width: 100%; height: auto; display: block; }
+
+/* ── MAIN CONTENT — stacked ── */
+.main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── ACCORDION ── */
+.accordion-panel {
+  background: rgba(10,20,38,0.88);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+}
+.accordion-item { border-bottom: 1px solid rgba(201,168,76,0.15); }
+.accordion-item:last-child { border-bottom: none; }
+.accordion-trigger {
+  width: 100%; background: none; border: none;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 20px; cursor: pointer; gap: 12px; text-align: left;
+  min-height: 56px;
+}
+.accordion-trigger:active { background: rgba(201,168,76,0.08); }
+.acc-title { font-family: 'Raleway', sans-serif; font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.9); letter-spacing: 0.02em; }
+.acc-plus { font-size: 1.2rem; color: rgba(255,255,255,0.55); transition: transform 0.3s; flex-shrink: 0; }
+.accordion-item.open .acc-plus { transform: rotate(45deg); }
+.accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.accordion-item.open .accordion-body { max-height: 6000px; }
+.accordion-inner { padding: 4px 20px 20px; font-family: 'EB Garamond', serif; font-size: 1rem; line-height: 1.82; color: rgba(255,255,255,0.85); }
+.accordion-inner h4 { font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #c9a84c; margin: 16px 0 4px; }
+.accordion-inner h4:first-child { margin-top: 0; }
+.accordion-inner p { margin-bottom: 10px; }
+.accordion-inner ul { list-style: none; padding: 0; }
+.accordion-inner ul li { padding: 4px 0 4px 14px; position: relative; font-size: 0.95rem; }
+.accordion-inner ul li::before { content: '·'; position: absolute; left: 0; color: #c9a84c; }
+
+/* ── REVIEWS ── */
+.reviews-panel {
+  background: rgba(10,20,38,0.82);
+  padding: 20px 16px 24px;
+  display: flex; flex-direction: column; gap: 14px;
+  backdrop-filter: blur(8px);
+}
+.reviews-heading {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  text-align: center;
+  margin-bottom: 4px;
+}
+.review-card {
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.22);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+.review-stars { color: #c9a84c; font-size: 0.85rem; margin-bottom: 8px; letter-spacing: 3px; }
+.review-text { font-family: 'EB Garamond', serif; font-size: 1rem; line-height: 1.68; color: rgba(255,255,255,0.88); margin-bottom: 8px; }
+.review-attr { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); text-align: right; }
+
+/* ── PHOTO CREDIT ── */
+.photo-section {
+  display: flex; align-items: center; justify-content: flex-end;
+  padding: 10px 14px 4px;
+}
+.photo-credit-wrap { display: flex; align-items: center; gap: 7px; }
+.photo-credit-wrap a { text-decoration: none; display: flex; align-items: center; }
+.photo-sig { height: 26px; width: auto; opacity: 0.55; }
+.photo-credit-text { font-size: 0.55rem; color: rgba(255,255,255,0.3); letter-spacing: 0.07em; font-style: italic; text-decoration: none; }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid rgba(201,168,76,0.15);
+  padding: 24px 16px 16px;
+  text-align: center;
+  background: rgba(13,27,46,0.62);
+  backdrop-filter: blur(8px);
+}
+
+/* Badges */
+.badges-grid {
+  display: flex; flex-wrap: wrap;
+  justify-content: center; gap: 16px;
+  max-width: 100%; margin: 0 auto 16px;
+}
+.badge-item { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 80px; text-align: center; }
+.badge-item img { width: 58px; height: 58px; object-fit: contain; filter: drop-shadow(0 3px 8px rgba(201,168,76,0.3)); }
+.badge-title { font-family: 'Cinzel', serif; font-size: 0.56rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; line-height: 1.3; }
+.badge-sub { font-size: 0.52rem; color: rgba(255,255,255,0.4); letter-spacing: 0.03em; line-height: 1.4; }
+
+.footer-divider { width: 48px; height: 1px; background: rgba(201,168,76,0.35); margin: 0 auto 14px; }
+
+/* Footer nav */
+.footer-links {
+  display: flex; gap: 16px;
+  align-items: center; justify-content: center;
+  flex-wrap: wrap; margin-bottom: 12px;
+}
+.footer-links a {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(201,168,76,0.75);
+  text-decoration: none; padding: 6px 2px;
+}
+.footer-links a:active { color: #c9a84c; }
+
+/* Social */
+.footer-social { display: flex; gap: 10px; justify-content: center; margin-bottom: 12px; }
+.social-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px;
+  border: 1px solid rgba(201,168,76,0.5);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 0.85rem; font-weight: 700;
+}
+.social-btn:active { border-color: #c9a84c; color: #c9a84c; background: rgba(201,168,76,0.1); }
+
+.footer-copy {
+  font-size: 0.58rem; color: rgba(255,255,255,0.25);
+  letter-spacing: 0.03em; line-height: 1.7;
+}
+
+/* ── ACTION BUTTONS BAR — below header ── */
+.sticky-bar {
+  display: flex;
+  background: rgba(13,27,46,0.88);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(201,168,76,0.2);
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+  padding: 12px 16px;
+  gap: 10px;
+  width: 100%;
+}
+.sticky-btn {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 13px 8px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: filter 0.15s;
+}
+.sticky-btn:active { filter: brightness(1.15); }
+.sticky-btn-outline {
+  border: 1px solid rgba(201,168,76,0.7);
+  color: #c9a84c;
+  background: transparent;
+}
+.sticky-btn-solid {
+  background: #c9a84c;
+  color: #0d1b2e;
+  border: 1px solid #c9a84c;
+}
+
+/* Space reserved */
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<video class="video-bg" autoplay muted loop playsinline oncanplay="this.playbackRate=0.25;" aria-hidden="true" tabindex="-1">
+  <source src="https://laceesharee.github.io/rtc-links/Courthouse_at_dusk_timelapse_9fced4f026.mp4" type="video/mp4">
+</video>
+
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <div class="hero-header">
+    <img src="logo__5_.png" alt="Round The Clock Notary — Hood County Texas Mobile Notary">
+  </div>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar" aria-label="Credentials summary">
+    Licensed | Bonded | Insured | 24/7 Mobile
+  </div>
+
+  <!-- ACTION BUTTONS — below header -->
+  <div class="sticky-bar" role="navigation" aria-label="Book or quote">
+    <a href="https://laceesharee.github.io/rtc-notary-calculator/"
+       class="sticky-btn sticky-btn-outline"
+       aria-label="Get a free notary quote — opens fee calculator">Free Quote</a>
+    <a href="https://roundtheclocknotaryhoodcounty.as.me/schedule/233e6be1"
+       class="sticky-btn sticky-btn-solid"
+       aria-label="Book a notary appointment online">Book Now</a>
+  </div>
+
+  <!-- BUTTONS — stacked on mobile -->
+  <nav class="steps-row" aria-label="Quick actions" id="main-content">
+    <a href="https://laceesharee.github.io/rtc-notary-calculator/" class="step-btn"
+       aria-label="Get a free notary quote — opens fee calculator">
+      <img src="now.png" alt="" aria-hidden="true">
+    </a>
+    <a href="https://roundtheclocknotaryhoodcounty.as.me/schedule/233e6be1" class="step-btn"
+       aria-label="Book a notary appointment online">
+      <img src="now__2_.png" alt="" aria-hidden="true">
+    </a>
+    <div class="step-btn-static" aria-hidden="true">
+      <img src="now__5_.png" alt="">
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <!-- ACCORDION -->
+    <section class="accordion-panel" aria-label="Information and FAQ">
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false" aria-controls="acc-body-1">
+          <span class="acc-title">Before the Clock Starts – FAQ</span>
+          <span class="acc-plus" aria-hidden="true">+</span>
+        </button>
+        <div class="accordion-body" id="acc-body-1" role="region" aria-label="FAQ">
+          <div class="accordion-inner">
+            <h4>What Does a Notary Public Do</h4>
+            <p>A Texas notary public verifies identity and witnesses the signing of documents. The notary confirms the signer appears willing and aware of the document being signed. A notary does not review or approve the legal content of a document.</p>
+            <h4>Can a Notary Give Legal Advice</h4>
+            <p>No. Texas notaries are not attorneys. A notary cannot explain legal meaning, choose forms, or advise how to complete documents. Speak with a licensed attorney if legal guidance is needed.</p>
+            <h4>How Much Does Notarization Cost</h4>
+            <p>Texas law sets the maximum fee for the notarial act itself. Additional service costs such as travel, printing, wait time, and after-hours appointments are separate. Use the Free Quote Calculator to see an estimated total before booking.</p>
+            <h4>Why Do You Charge Travel Fees</h4>
+            <p>Mobile notary services travel to your home, office, hospital, or other location. Travel fees cover time, distance, and transportation costs once the notary begins traveling. Travel fees apply regardless of whether the notarization is completed.</p>
+            <h4>Why Do Prices Change at Night or on Weekends</h4>
+            <p>Evening, late night, weekend, and holiday appointments include additional service charges. The quote builder calculates this automatically based on your appointment time.</p>
+            <h4>What Identification Is Required</h4>
+            <p>Every signer must present valid government-issued photo identification. Common acceptable identification includes a driver's license, state ID card, or passport.</p>
+            <h4>What Should I Bring to My Appointment</h4>
+            <p>Bring the complete document ready for signature. Do not sign before the appointment unless specifically required. All signers must be present with valid photo ID.</p>
+            <h4>Can a Document Be Notarized if It Is Incomplete</h4>
+            <p>No. Texas law prohibits notarizing documents with blank spaces or incomplete sections. If documents are incomplete, the appointment will be canceled and travel fees still apply.</p>
+            <h4>Do All Signers Need to Be Present</h4>
+            <p>Yes. Every signer must appear before the notary at the same time unless the document specifically allows separate notarizations.</p>
+            <h4>What Happens if Someone Does Not Show Up</h4>
+            <p>The 15-minute waiting period begins at the scheduled appointment time. If the notarization has not begun within 15 minutes, the visit is treated as a completed service call and the deposit is non-refundable.</p>
+            <h4>What Happens if I Cancel My Appointment</h4>
+            <p>Appointments canceled less than 24 hours before the scheduled time are non-refundable.</p>
+            <h4>How Do Remote Online Notarizations Work</h4>
+            <p>Remote Online Notarization uses identity verification technology and live audio-video recording. Additional platform fees may apply and are the responsibility of the client.</p>
+            <h4>Do You Offer Discounts</h4>
+            <p>Yes. A 10 percent service discount is available for active military, veterans, first responders, educators, and seniors age 65 and older. Valid identification required at time of service.</p>
+            <h4>Do You Provide Witnesses</h4>
+            <p>Witness services are available by request and may include an additional service fee. Witnesses must present valid government-issued photo identification at the appointment.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false" aria-controls="acc-body-2">
+          <span class="acc-title">Why Trust Our Seal – About Us</span>
+          <span class="acc-plus" aria-hidden="true">+</span>
+        </button>
+        <div class="accordion-body" id="acc-body-2" role="region" aria-label="About Us">
+          <div class="accordion-inner">
+            <h4>Founded by Lacee "Sharee" Westlund</h4>
+            <p>Some people choose a career in public service. For Sharee Westlund, it was never a choice — it was simply who she is.</p>
+            <p>A lifelong Texan and proud Hood County resident, Sharee has spent decades showing up for her community in the ways that matter most.</p>
+            <p>Sharee holds a Bachelor of Business Administration from West Texas A&M University and a Master of Science in Human Resource Management from Tarleton State University.</p>
+            <p>Round the Clock Notary was built on a simple belief: that when life calls for a notary — whether it is a real estate closing, a hospital bedside, or a late-night emergency — you deserve someone who is not only qualified, but trustworthy.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false" aria-controls="acc-body-3">
+          <span class="acc-title">Sealed Up – Terms &amp; Conditions</span>
+          <span class="acc-plus" aria-hidden="true">+</span>
+        </button>
+        <div class="accordion-body" id="acc-body-3" role="region" aria-label="Terms and Conditions">
+          <div class="accordion-inner">
+            <h4>Service Description</h4>
+            <p>Round The Clock Notary provides mobile notary and remote online notarization services in accordance with Texas law. The notary does not represent any party in the transaction and does not participate in the legal content of documents.</p>
+            <h4>Legal Advice Disclaimer</h4>
+            <p>The notary public is not an attorney and does not provide legal advice. If legal advice is required, consult a licensed attorney before scheduling service.</p>
+            <h4>Deposit and Appointment Policy</h4>
+            <p>A deposit is required to secure all appointments. It becomes non-refundable upon cancellation less than 24 hours before the appointment, signer failure to appear, or inability to complete due to missing identification or incomplete documents.</p>
+            <h4>Travel Fees</h4>
+            <p>Travel fees apply once the notary begins travel and are non-refundable even if the notarization cannot be completed.</p>
+            <h4>Limitation of Liability</h4>
+            <p>Liability is limited to the lesser of: (a) total fees paid for the specific service, or (b) the applicable E&amp;O insurance limits.</p>
+            <h4>Governing Law</h4>
+            <p>Governed by the laws of the State of Texas. Disputes submitted to good-faith mediation in Hood County, Texas first. Rev. 03/2026.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false" aria-controls="acc-body-4">
+          <span class="acc-title">Clock Master – Certifications</span>
+          <span class="acc-plus" aria-hidden="true">+</span>
+        </button>
+        <div class="accordion-body" id="acc-body-4" role="region" aria-label="Certifications">
+          <div class="accordion-inner">
+            <ul>
+              <li>Texas Commissioned Notary Public</li>
+              <li>Remote Online Notary Certification Texas</li>
+              <li>National Notary Association Certified Notary Signing Agent</li>
+              <li>NNA Background Screened Notary</li>
+              <li>Loan Signing Agent Certification</li>
+              <li>Real Estate Loan Document Training</li>
+              <li>Remote Online Notary Technology Certification</li>
+              <li>Electronic Notary Training</li>
+              <li>Mortgage Loan Closing Training</li>
+              <li>Identity Verification and Fraud Prevention Training</li>
+              <li>Continuing Notary Education Courses</li>
+              <li>Notary Errors and Omissions Insurance</li>
+              <li>Texas Required Notary Surety Bond</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false" aria-controls="acc-body-5">
+          <span class="acc-title">By The Book – Legal Notices, Privacy &amp; Accessibility</span>
+          <span class="acc-plus" aria-hidden="true">+</span>
+        </button>
+        <div class="accordion-body" id="acc-body-5" role="region" aria-label="Legal Notices and Privacy Policy">
+          <div class="accordion-inner">
+            <h4>Not an Attorney</h4>
+            <p>Not an attorney. Not legal advice.</p>
+            <h4>Copyright</h4>
+            <p>© 2026 Round The Clock Notary. All rights reserved.</p>
+            <h4>Privacy Policy</h4>
+            <p>Information collected is used solely to provide the requested service. Personal information is not sold, rented, or shared with third parties for marketing purposes. Complies with Texas HB300 and applicable HIPAA requirements.</p>
+            <h4>Accessibility</h4>
+            <p>Mobile notary service traveling to the client location — supporting homebound clients, assisted living, hospitals, and hospice settings.</p>
+            <h4>Contact</h4>
+            <p>Round The Clock Notary · ByPatience LLC<br>
+            <a href="/cdn-cgi/l/email-protection#224b4c444d62504d574c46564a47414e4d41494c4d5643505b0c414d4f"><span class="__cf_email__" data-cfemail="bed7d0d8d1feccd1cbd0dacad6dbddd2d1ddd5d0d1cadfccc790ddd1d3">[email&#160;protected]</span></a> · 817-512-7217<br>
+            Rev. 03/2026</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="reviews-panel" aria-label="Customer reviews">
+      <p class="reviews-heading">What Clients Say</p>
+      <div class="review-card">
+        <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="review-text">"Professional, punctual, and trustworthy. The notary walked us through the process, verified everything carefully, and made the signing simple and stress free."</p>
+        <p class="review-attr">— Verified Client</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="review-text">"Needed a document notarized late in the evening. The service was prompt and organized. The notary explained each step."</p>
+        <p class="review-attr">— Verified Client</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="review-text">"She came to the hospital on short notice. Professional, calm, and made an incredibly stressful situation so much easier."</p>
+        <p class="review-attr">— Verified Client</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="review-text">"The online booking and fee calculator made it so easy. No surprises. Showed up on time, knew exactly what she was doing."</p>
+        <p class="review-attr">— Verified Client</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- PHOTO CREDIT -->
+  <div class="photo-section">
+    <div class="photo-credit-wrap">
+      <a href="https://jenniferkochis.zenfoliosite.com/" target="_blank" rel="noopener noreferrer">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/24637c62-49a3-4425-800a-51669b665f3c/Untitled+design+%2811%29.png"
+             alt="Jennifer Kochis Photography" class="photo-sig">
+      </a>
+      <a href="https://jenniferkochis.zenfoliosite.com/" target="_blank" rel="noopener noreferrer" class="photo-credit-text">Photo Credit — Jennifer Kochis</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+
+    <div class="badges-grid" style="margin-bottom:20px;">
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/3ff339da-4c39-4e75-b38e-db339391c343/Commissioned+Licenced.png" alt="Texas Licensed Notary">
+        <span class="badge-title">Licensed</span><span class="badge-sub">Texas Secretary of State</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/db2b3946-19d6-4f28-b4b0-56551f5af837/Bonded.png" alt="Bonded $10,000">
+        <span class="badge-title">Bonded</span><span class="badge-sub">$10,000</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/fcccd073-dcd4-4979-8bdc-a5a4983a5f27/Insured.png" alt="Errors and Omissions Insurance">
+        <span class="badge-title">Insured</span><span class="badge-sub">E&amp;O Policy</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/6308566a-0c84-42ec-9181-15de56f6d0e1/Background.png" alt="Background Checked">
+        <span class="badge-title">Background</span><span class="badge-sub">Checked</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/fa65b718-2797-4c01-a9c2-9e269b5b0235/Certified+Loan+Notary.png" alt="Certified Loan Signing Agent">
+        <span class="badge-title">Certified</span><span class="badge-sub">Loan Signer</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/d016a43c-2379-4831-a419-5d885d2afdc8/Texas+RON.png" alt="Texas Remote Online Notary">
+        <span class="badge-title">Texas – RON</span><span class="badge-sub">Remote Online</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/b32994c5-f38e-4665-89cd-d7d586dfa659/ChatGPT+Image+Mar+11%2C+2026%2C+02_51_01+AM.png" alt="HIPAA Compliant">
+        <span class="badge-title">Certified</span><span class="badge-sub">HIPAA Compliant</span>
+      </div>
+    </div>
+
+    <div class="badges-grid">
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/b5219a3c-bc9b-4f73-b778-e26f60c60f8e/National+Notary+Association+Member.png" alt="American Association of Notaries Member">
+        <span class="badge-title">Member</span><span class="badge-sub">American Assoc. of Notaries</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/890df9ed-8174-40e8-bf1a-c94c50df817e/ChatGPT+Image+Mar+11%2C+2026%2C+02_42_28+AM.png" alt="National Association of Notaries Member">
+        <span class="badge-title">Member</span><span class="badge-sub">National Assoc. of Notaries</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/6f36daef-86a8-41f2-a25c-f86a51589fdc/Chamber+Member.png" alt="National Society of Notaries Member">
+        <span class="badge-title">Member</span><span class="badge-sub">National Society of Notaries</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/e3e24c29-dddf-4e63-a8fc-6f2b9e357677/BBB.png" alt="Granbury Chamber of Commerce Member">
+        <span class="badge-title">Member</span><span class="badge-sub">Granbury Chamber</span>
+      </div>
+    </div>
+
+    <div class="footer-divider" aria-hidden="true"></div>
+
+    <div class="footer-links">
+      <a href="https://laceesharee.github.io/rtc-notary-calculator/"
+         aria-label="Get a free notary quote">Free Quote</a>
+      <a href="https://roundtheclocknotaryhoodcounty.as.me/schedule/233e6be1"
+         aria-label="Book a notary appointment">Book Now</a>
+      <a href="tel:8175127217"
+         aria-label="Call Round The Clock Notary">817-512-7217</a>
+      <a href="/cdn-cgi/l/email-protection#9bf2f5fdf4dbe9f4eef5ffeff3fef8f7f4f8f0f5f4effae9e2b5f8f4f6" aria-label="Email Round The Clock Notary">Email Us</a>
+    </div>
+
+    <div class="footer-social">
+      <a href="https://www.facebook.com/roundtheclocknotary" target="_blank" rel="noopener noreferrer"
+         class="social-btn" aria-label="Round The Clock Notary on Facebook">f</a>
+      <a href="https://www.linkedin.com/company/roundtheclocknotary" target="_blank" rel="noopener noreferrer"
+         class="social-btn" aria-label="Round The Clock Notary on LinkedIn">in</a>
+    </div>
+
+    <p class="footer-copy">© 2026 Round The Clock Notary · ByPatience LLC · Hood County, TX<br>
+    Not an attorney. Not legal advice. Licensed · Bonded · Insured.</p>
+
+  </footer>
+
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function toggle(btn) {
+  const item = btn.closest('.accordion-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.accordion-item').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.accordion-trigger').setAttribute('aria-expa
