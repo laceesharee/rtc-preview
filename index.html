@@ -56,6 +56,7 @@ body { font-family: 'Raleway', sans-serif; background: #0d1b2e; color: #fff; ove
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  background: transparent;
 }
 .step-btn {
   display: block; text-decoration: none;
@@ -330,7 +331,7 @@ footer {
           <h4>Accessibility</h4>
           <p>Mobile notary service traveling to the client location — supporting homebound clients, assisted living, hospitals, and hospice settings.</p>
           <h4>Contact</h4>
-          <p>Round The Clock Notary · ByPatience LLC<br>info@RoundTheClockNotary.com · 817-512-7217<br>Rev. 03/2026</p>
+          <p>Round The Clock Notary · ByPatience LLC<br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f49d9a929bb4a69b819a90a09c91b7989b979fba9b8095868dda979b99">[email&#160;protected]</a> · 817-512-7217<br>Rev. 03/2026</p>
         </div></div>
       </div>
     </div>
@@ -372,7 +373,8 @@ footer {
 
   <!-- FOOTER — badges + info -->
   <footer>
-    <div class="badges-grid">
+    <!-- ROW 1: Credentials -->
+    <div class="badges-grid" style="margin-bottom:32px;">
       <div class="badge-item">
         <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/3ff339da-4c39-4e75-b38e-db339391c343/Commissioned+Licenced.png" alt="Licensed">
         <span class="badge-title">Licensed</span><span class="badge-sub">Texas Secretary of State</span>
@@ -401,6 +403,9 @@ footer {
         <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/b32994c5-f38e-4665-89cd-d7d586dfa659/ChatGPT+Image+Mar+11%2C+2026%2C+02_51_01+AM.png" alt="HIPAA">
         <span class="badge-title">Certified</span><span class="badge-sub">HIPPA Compliant</span>
       </div>
+    </div>
+    <!-- ROW 2: Memberships -->
+    <div class="badges-grid">
       <div class="badge-item">
         <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/b5219a3c-bc9b-4f73-b778-e26f60c60f8e/National+Notary+Association+Member.png" alt="AAN">
         <span class="badge-title">Member</span><span class="badge-sub">American Association of Notaries</span>
@@ -430,7 +435,7 @@ footer {
       <a href="https://laceesharee.github.io/rtc-notary-calculator/">Free Quote</a>
       <a href="https://roundtheclocknotaryhoodcounty.as.me/">Book Now</a>
       <a href="tel:8175127217">817-512-7217</a>
-      <a href="mailto:info@roundtheclocknotary.com">Email Us</a>
+      <a href="/cdn-cgi/l/email-protection#86efe8e0e9c6f4e9f3e8e2f2eee3e5eae9e5ede8e9f2e7f4ffa8e5e9eb">Email Us</a>
     </div>
     <p class="footer-copy">
       © 2026 Round The Clock Notary · ByPatience LLC · Hood County, Texas<br>
@@ -440,20 +445,9 @@ footer {
 
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function toggle(btn) {
   const item = btn.closest('.accordion-item');
   const isOpen = item.classList.contains('open');
   document.querySelectorAll('.accordion-item.open').forEach(el => el.classList.remove('open'));
-  if (!isOpen) item.classList.add('open');
-}
-
-// Hero header fades out on scroll
-const heroHeader = document.getElementById('heroHeader');
-window.addEventListener('scroll', () => {
-  const opacity = Math.max(0, 1 - window.scrollY / 200);
-  heroHeader.style.opacity = opacity;
-});
-</script>
-</body>
-</html>
+  if (!isOpen) i
