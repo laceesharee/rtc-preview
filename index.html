@@ -11,33 +11,33 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Raleway', sans-serif; background: #0d1b2e; color: #fff; overflow-x: hidden; }
 
-/* ── VIDEO BG (shared across entire page) ── */
+/* ── VIDEO BG — fixed, full page ── */
 .video-bg {
   position: fixed; inset: 0;
   width: 100%; height: 100%;
-  object-fit: cover;
-  z-index: 0;
+  object-fit: cover; z-index: 0;
   pointer-events: none;
 }
 .video-overlay {
   position: fixed; inset: 0;
-  background: rgba(10,18,34,0.38);
-  z-index: 1;
-  pointer-events: none;
+  background: rgba(10,18,34,0.22);
+  z-index: 1; pointer-events: none;
 }
 
-/* All content sits above video */
 .page-wrap { position: relative; z-index: 2; }
 
-/* ── HERO HEADER — fades on scroll ── */
+/* ── HERO HEADER — light-to-transparent gradient, fades on scroll ── */
 .hero-header {
   width: 100%;
   display: flex; align-items: center; justify-content: center;
-  padding: 32px 40px 24px;
-  background: linear-gradient(180deg, rgba(10,18,34,0.72) 0%, rgba(10,18,34,0.0) 100%);
-  transition: opacity 0.4s;
+  padding: 36px 40px 28px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.12) 0%,
+    rgba(255,255,255,0.04) 60%,
+    rgba(255,255,255,0.0) 100%);
+  transition: opacity 0.3s ease;
 }
-.hero-header img { height: 90px; max-width: 600px; object-fit: contain; }
+.hero-header img { height: 140px; max-width: 700px; object-fit: contain; }
 
 /* ── TRUST BAR ── */
 .trust-bar {
@@ -46,10 +46,10 @@ body { font-family: 'Raleway', sans-serif; background: #0d1b2e; color: #fff; ove
   font-size: clamp(0.78rem, 1.3vw, 1rem);
   font-weight: 600; letter-spacing: 0.16em;
   color: #c9a84c;
-  padding: 0 0 20px;
+  padding: 0 0 18px;
 }
 
-/* ── BUTTONS — full width grid ── */
+/* ── BUTTONS — full width, transparent bg ── */
 .steps-row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -62,8 +62,15 @@ body { font-family: 'Raleway', sans-serif; background: #0d1b2e; color: #fff; ove
   transition: transform 0.2s, filter 0.2s;
   cursor: pointer;
 }
-.step-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+.step-btn:hover { transform: translateY(-2px); filter: brightness(1.12); }
 .step-btn img { width: 100%; height: auto; display: block; }
+
+/* Sign & Seal — no interaction */
+.step-btn-static {
+  display: block;
+  cursor: default;
+}
+.step-btn-static img { width: 100%; height: auto; display: block; }
 
 /* ── TWO COLUMN ── */
 .main-content {
@@ -73,10 +80,10 @@ body { font-family: 'Raleway', sans-serif; background: #0d1b2e; color: #fff; ove
   grid-template-columns: 1fr 1fr;
 }
 
-/* ── ACCORDION ── */
+/* ── ACCORDION — gold tint ── */
 .accordion-panel {
-  background: rgba(20, 35, 60, 0.72);
-  border-right: 1px solid rgba(201,168,76,0.2);
+  background: rgba(201,168,76,0.13);
+  border-right: 1px solid rgba(201,168,76,0.25);
   border-radius: 0 0 0 16px;
   overflow: hidden;
   backdrop-filter: blur(4px);
@@ -88,13 +95,13 @@ body { font-family: 'Raleway', sans-serif; background: #0d1b2e; color: #fff; ove
   display: flex; justify-content: space-between; align-items: center;
   padding: 18px 28px; cursor: pointer; gap: 12px; text-align: left;
 }
-.accordion-trigger:hover { background: rgba(201,168,76,0.07); }
-.acc-title { font-family: 'Raleway', sans-serif; font-size: 0.88rem; font-weight: 500; color: rgba(255,255,255,0.88); letter-spacing: 0.02em; }
+.accordion-trigger:hover { background: rgba(201,168,76,0.08); }
+.acc-title { font-family: 'Raleway', sans-serif; font-size: 0.88rem; font-weight: 500; color: rgba(255,255,255,0.9); letter-spacing: 0.02em; }
 .acc-plus { font-size: 1.1rem; color: rgba(255,255,255,0.55); transition: transform 0.3s; flex-shrink: 0; }
 .accordion-item.open .acc-plus { transform: rotate(45deg); }
 .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
 .accordion-item.open .accordion-body { max-height: 6000px; }
-.accordion-inner { padding: 4px 28px 24px; font-family: 'EB Garamond', serif; font-size: 1rem; line-height: 1.82; color: rgba(255,255,255,0.82); }
+.accordion-inner { padding: 4px 28px 24px; font-family: 'EB Garamond', serif; font-size: 1rem; line-height: 1.82; color: rgba(255,255,255,0.85); }
 .accordion-inner h4 { font-family: 'Raleway', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #c9a84c; margin: 16px 0 4px; }
 .accordion-inner h4:first-child { margin-top: 0; }
 .accordion-inner p { margin-bottom: 10px; }
@@ -102,73 +109,61 @@ body { font-family: 'Raleway', sans-serif; background: #0d1b2e; color: #fff; ove
 .accordion-inner ul li { padding: 2px 0 2px 14px; position: relative; }
 .accordion-inner ul li::before { content: '·'; position: absolute; left: 0; color: #c9a84c; }
 
-/* ── REVIEWS ── */
+/* ── REVIEWS — gold tint ── */
 .reviews-panel {
-  background: rgba(20, 35, 60, 0.72);
+  background: rgba(201,168,76,0.10);
   padding: 24px 24px 28px;
   display: flex; flex-direction: column; gap: 16px;
   border-radius: 0 0 16px 0;
   backdrop-filter: blur(4px);
 }
 .review-card {
-  background: rgba(20, 35, 60, 0.60);
-  border: 1px solid rgba(201,168,76,0.22);
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.25);
   border-radius: 12px;
   padding: 18px 20px;
 }
 .review-stars { color: #c9a84c; font-size: 0.88rem; margin-bottom: 8px; letter-spacing: 3px; }
-.review-text { font-family: 'EB Garamond', serif; font-size: 1rem; line-height: 1.72; color: rgba(255,255,255,0.85); font-style: italic; margin-bottom: 10px; }
+.review-text { font-family: 'EB Garamond', serif; font-size: 1rem; line-height: 1.72; color: rgba(255,255,255,0.88); font-style: italic; margin-bottom: 10px; }
 .review-attr { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.38); text-align: right; }
 
-/* ── PHOTO CREDIT SECTION ── */
+/* ── PHOTO CREDIT ── */
 .photo-section {
   position: relative; width: 100%;
-  min-height: 160px;
+  min-height: 80px;
   display: flex; align-items: flex-end; justify-content: flex-end;
   padding: 12px 16px;
 }
-.photo-credit-wrap {
-  display: flex; align-items: center; gap: 8px;
-}
+.photo-credit-wrap { display: flex; align-items: center; gap: 8px; }
 .photo-credit-wrap a { text-decoration: none; display: flex; align-items: center; }
-.photo-sig {
-  height: 36px; width: auto;
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
+.photo-sig { height: 32px; width: auto; opacity: 0.65; transition: opacity 0.2s; }
 .photo-sig:hover { opacity: 1; }
-.photo-credit-text {
-  font-size: 0.62rem; color: rgba(255,255,255,0.4);
-  letter-spacing: 0.08em; font-style: italic;
-  text-decoration: none;
-  transition: color 0.2s;
-}
+.photo-credit-text { font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; font-style: italic; text-decoration: none; transition: color 0.2s; }
 .photo-credit-text:hover { color: #c9a84c; }
 
-/* ── BADGES ── */
-.badges-section {
-  padding: 48px 24px 56px;
-  border-top: 1px solid rgba(201,168,76,0.12);
-}
-.badges-grid {
-  display: flex; flex-wrap: wrap;
-  justify-content: center; gap: 28px;
-  max-width: 1100px; margin: 0 auto;
-}
-.badge-item { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 110px; text-align: center; }
-.badge-item img { width: 80px; height: 80px; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(201,168,76,0.3)); transition: transform 0.2s, filter 0.2s; }
-.badge-item:hover img { transform: scale(1.07); filter: drop-shadow(0 6px 20px rgba(201,168,76,0.55)); }
-.badge-title { font-family: 'Cinzel', serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; line-height: 1.3; }
-.badge-sub { font-size: 0.6rem; color: rgba(255,255,255,0.42); letter-spacing: 0.04em; line-height: 1.4; }
-
-/* ── FOOTER ── */
+/* ── FOOTER — contains badges + info ── */
 footer {
   border-top: 1px solid rgba(201,168,76,0.15);
-  padding: 40px 24px 32px;
+  padding: 48px 24px 36px;
   text-align: center;
-  background: rgba(10,18,34,0.65);
-  backdrop-filter: blur(6px);
+  background: rgba(10,18,34,0.62);
+  backdrop-filter: blur(8px);
 }
+
+/* BADGES inside footer */
+.badges-grid {
+  display: flex; flex-wrap: wrap;
+  justify-content: center; gap: 24px;
+  max-width: 1100px; margin: 0 auto 48px;
+}
+.badge-item { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100px; text-align: center; }
+.badge-item img { width: 72px; height: 72px; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(201,168,76,0.3)); transition: transform 0.2s, filter 0.2s; }
+.badge-item:hover img { transform: scale(1.07); filter: drop-shadow(0 6px 20px rgba(201,168,76,0.55)); }
+.badge-title { font-family: 'Cinzel', serif; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; line-height: 1.3; }
+.badge-sub { font-size: 0.58rem; color: rgba(255,255,255,0.42); letter-spacing: 0.04em; line-height: 1.4; }
+
+.footer-divider { width: 60px; height: 1px; background: rgba(201,168,76,0.35); margin: 0 auto 32px; }
+
 .footer-logo { height: 70px; margin-bottom: 20px; opacity: 0.9; }
 .footer-social { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; }
 .social-btn {
@@ -181,7 +176,7 @@ footer {
   font-size: 0.85rem; font-weight: 700;
   transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
-.social-btn:hover { border-color: #c9a84c; color: #c9a84c; background: rgba(201,168,76,0.08); }
+.social-btn:hover { border-color: #c9a84c; color: #c9a84c; background: rgba(201,168,76,0.1); }
 .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
 .footer-links a { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(201,168,76,0.75); text-decoration: none; transition: color 0.2s; }
 .footer-links a:hover { color: #c9a84c; }
@@ -190,16 +185,15 @@ footer {
 </head>
 <body>
 
-<!-- VIDEO BG — fixed, spans entire page -->
-<video class="video-bg" autoplay muted loop playsinline style="animation-duration:1s; filter:none;"
-  oncanplay="this.playbackRate=0.5;">
+<!-- VIDEO BG -->
+<video class="video-bg" autoplay muted loop playsinline oncanplay="this.playbackRate=0.5;">
   <source src="https://laceesharee.github.io/rtc-links/Courthouse_at_dusk_timelapse_9fced4f026.mp4" type="video/mp4">
 </video>
 <div class="video-overlay"></div>
 
 <div class="page-wrap">
 
-  <!-- HERO HEADER — logo_6, fades on scroll -->
+  <!-- HERO HEADER -->
   <div class="hero-header" id="heroHeader">
     <img src="logo__6_.png" alt="Round The Clock Notary">
   </div>
@@ -207,7 +201,7 @@ footer {
   <!-- TRUST BAR -->
   <div class="trust-bar">Licensed | Bonded | Insured | 24/7 Mobile</div>
 
-  <!-- 3 BUTTONS full width -->
+  <!-- 3 BUTTONS -->
   <div class="steps-row">
     <a href="https://laceesharee.github.io/rtc-notary-calculator/" class="step-btn">
       <img src="now.png" alt="Free Quote">
@@ -215,7 +209,7 @@ footer {
     <a href="https://roundtheclocknotaryhoodcounty.as.me/schedule/233e6be1" class="step-btn">
       <img src="now__2_.png" alt="Book Now">
     </a>
-    <div class="step-btn">
+    <div class="step-btn-static">
       <img src="now__5_.png" alt="Sign & Seal">
     </div>
   </div>
@@ -223,7 +217,7 @@ footer {
   <!-- TWO COLUMN -->
   <div class="main-content">
 
-    <!-- LEFT: ACCORDION -->
+    <!-- ACCORDION -->
     <div class="accordion-panel">
       <div class="accordion-item">
         <button class="accordion-trigger" onclick="toggle(this)">
@@ -341,7 +335,7 @@ footer {
       </div>
     </div>
 
-    <!-- RIGHT: REVIEWS -->
+    <!-- REVIEWS -->
     <div class="reviews-panel">
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
@@ -364,10 +358,9 @@ footer {
         <p class="review-attr">— Verified Client</p>
       </div>
     </div>
+  </div>
 
-  </div><!-- /main-content -->
-
-  <!-- PHOTO CREDIT — Jennifer Kochis signature tiny in corner -->
+  <!-- PHOTO CREDIT -->
   <div class="photo-section">
     <div class="photo-credit-wrap">
       <a href="https://jenniferkochis.zenfoliosite.com/" target="_blank">
@@ -377,8 +370,8 @@ footer {
     </div>
   </div>
 
-  <!-- BADGES -->
-  <div class="badges-section">
+  <!-- FOOTER — badges + info -->
+  <footer>
     <div class="badges-grid">
       <div class="badge-item">
         <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/3ff339da-4c39-4e75-b38e-db339391c343/Commissioned+Licenced.png" alt="Licensed">
@@ -425,10 +418,9 @@ footer {
         <span class="badge-title">Member</span><span class="badge-sub">Granbury Chamber of Commerce</span>
       </div>
     </div>
-  </div>
 
-  <!-- FOOTER -->
-  <footer>
+    <div class="footer-divider"></div>
+
     <img src="logo__5_.png" alt="Round The Clock Notary" class="footer-logo">
     <div class="footer-social">
       <a href="https://www.facebook.com/roundtheclocknotary" target="_blank" class="social-btn">f</a>
@@ -446,10 +438,9 @@ footer {
     </p>
   </footer>
 
-</div><!-- /page-wrap -->
+</div>
 
 <script>
-// Accordion
 function toggle(btn) {
   const item = btn.closest('.accordion-item');
   const isOpen = item.classList.contains('open');
@@ -457,10 +448,10 @@ function toggle(btn) {
   if (!isOpen) item.classList.add('open');
 }
 
-// Hero header fade on scroll
+// Hero header fades out on scroll
 const heroHeader = document.getElementById('heroHeader');
 window.addEventListener('scroll', () => {
-  const opacity = Math.max(0, 1 - window.scrollY / 180);
+  const opacity = Math.max(0, 1 - window.scrollY / 200);
   heroHeader.style.opacity = opacity;
 });
 </script>
