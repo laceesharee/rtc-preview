@@ -44,6 +44,26 @@ body { font-family: 'Raleway', sans-serif; background: #0d1b2e; color: #fff; ove
 }
 .hero-header img { height: 250px; max-width: 800px; object-fit: contain; }
 
+/* ── VAN CRUISE ── */
+.van-strip {
+  width: 100%;
+  overflow: hidden;
+  height: 72px;
+  position: relative;
+  pointer-events: none;
+}
+.van-strip img {
+  position: absolute;
+  height: 64px;
+  width: auto;
+  bottom: 4px;
+  animation: vanCruise 18s linear infinite;
+}
+@keyframes vanCruise {
+  0%   { left: -120px; }
+  100% { left: 110%; }
+}
+
 /* ── TRUST BAR ── */
 .trust-bar {
   text-align: center;
@@ -203,6 +223,11 @@ footer {
     <img src="logo__5_.png" alt="Round The Clock Notary — Hood County Texas Mobile Notary">
   </div>
 
+  <!-- VAN CRUISE -->
+  <div class="van-strip" aria-hidden="true">
+    <img src="van.png" alt="">
+  </div>
+
   <!-- TRUST BAR -->
   <div class="trust-bar" aria-label="Credentials summary">Licensed | Bonded | Insured | 24/7 Mobile</div>
 
@@ -348,7 +373,7 @@ footer {
             <p>Mobile notary service traveling to the client location — supporting homebound clients, assisted living, hospitals, and hospice settings.</p>
             <h4>Contact</h4>
             <p>Round The Clock Notary · ByPatience LLC<br>
-            <a href="mailto:info@roundtheclocknotary.com">info@roundtheclocknotary.com</a> · 817-512-7217<br>
+            <a href="/cdn-cgi/l/email-protection#dfb6b1b9b09fadb0aab1bbabb7babcb3b0bcb4b1b0abbeada6f1bcb0b2"><span class="__cf_email__" data-cfemail="264f484049665449534842524e43454a49454d48495247545f0845494b">[email&#160;protected]</span></a> · 817-512-7217<br>
             Rev. 03/2026</p>
           </div>
         </div>
@@ -458,8 +483,7 @@ footer {
            aria-label="Book a notary appointment online">Book Now</a>
         <a href="tel:8175127217"
            aria-label="Call Round The Clock Notary at 817-512-7217">817-512-7217</a>
-        <a href="mailto:info@roundtheclocknotary.com"
-           aria-label="Email Round The Clock Notary">Email Us</a>
+        <a href="/cdn-cgi/l/email-protection#4821262e27083a273d262c3c202d2b24272b2326273c293a31662b2725" aria-label="Email Round The Clock Notary">Email Us</a>
       </div>
       <div class="footer-social">
         <a href="https://www.facebook.com/roundtheclocknotary" target="_blank" rel="noopener noreferrer"
@@ -474,7 +498,7 @@ footer {
 
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function toggle(btn) {
   const item = btn.closest('.accordion-item');
   const isOpen = item.classList.contains('open');
@@ -486,18 +510,4 @@ function toggle(btn) {
   // Open clicked item if it was closed
   if (!isOpen) {
     item.classList.add('open');
-    btn.setAttribute('aria-expanded', 'true');
-  }
-}
-
-// Hero header fades on scroll
-window.addEventListener('scroll', () => {
-  const header = document.getElementById('heroHeader');
-  if (header) {
-    const opacity = Math.max(0, 1 - window.scrollY / 200);
-    header.style.opacity = opacity;
-  }
-});
-</script>
-</body>
-</html>
+    btn.setAttribute('aria-
