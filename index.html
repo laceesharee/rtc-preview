@@ -3,1235 +3,448 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Round the Clock Notary — Free Quote</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<!-- Google Maps Places — replace AIzaSyBaEDQufz1Ipb6Q13frcp5JE8m28RHxfHM below -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaEDQufz1Ipb6Q13frcp5JE8m28RHxfHM&libraries=places&callback=initGoogleMaps" async defer onerror="console.warn('Google Maps failed to load; using Census fallback.')"></script>
+<title>Round The Clock Notary — Hood County, TX</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --navy:#0e1b3a;--navy-mid:#1a2d5a;--gold:#c9a84c;--gold-bright:#e8c96a;--gold-pale:#f0dfa0;
-  --cream:#f8f3e8;--cream-dark:#ede5d0;--white:#fff;--muted:#6b7280;--border:#cfc0a0;
-  --green:#1a6644;--red:#8b1f2f;--text:#0e1b3a;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Raleway', sans-serif; background: #0d1b2e; color: #fff; overflow-x: hidden; }
+
+/* ── VIDEO BG — fixed, full page ── */
+.video-bg {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; z-index: 0;
+  pointer-events: none;
 }
-body{font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
-.gold-rule{height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-bright),var(--gold),transparent)}
-header{background:linear-gradient(180deg,#0a1530,#0e1b3a 60%,#132240);padding:1.5rem;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid rgba(201,168,76,.25)}
-header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.14),transparent 65%)}
-.header-inner{position:relative;display:flex;flex-direction:column;align-items:center;gap:.75rem}
-.logo-wrap{width:90px;height:90px}
-.logo-wrap img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 16px rgba(201,168,76,.4))}
-header h1{font-family:"Cinzel",serif;color:var(--gold-bright);font-size:clamp(1.3rem,4vw,2rem);letter-spacing:.04em;text-shadow:0 2px 12px rgba(0,0,0,.5)}
-.tagline{display:flex;align-items:center;gap:.5rem;justify-content:center;margin-top:.3rem}
-.tagline-line{flex:1;max-width:40px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.5))}
-.tagline-line.r{background:linear-gradient(270deg,transparent,rgba(201,168,76,.5))}
-.tagline span{font-family:"Cinzel",serif;font-size:.6rem;letter-spacing:.16em;color:rgba(201,168,76,.75);text-transform:uppercase}
-.sub-tag{margin-top:.25rem;font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase}
-.not-booking-bar{background:var(--navy);border-bottom:2px solid rgba(201,168,76,.3);padding:.6rem 1rem;text-align:center;font-size:.73rem;color:rgba(255,255,255,.85);font-family:"Cinzel",serif;letter-spacing:.05em}
-.not-booking-bar a{color:var(--gold-bright);text-decoration:underline}
-.wrapper{max-width:660px;margin:0 auto;padding:1.5rem 1.25rem 4rem}
-.prog-wrap{margin-bottom:1.5rem}
-.prog-bg{height:3px;background:var(--cream-dark);border-radius:3px;overflow:hidden}
-.prog-fill{height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-bright));border-radius:3px;transition:width .5s ease;width:0%}
-.prog-label{font-size:.68rem;color:var(--muted);text-align:right;margin-top:.3rem;font-family:"Cinzel",serif;letter-spacing:.05em}
-.rt{background:linear-gradient(135deg,var(--navy),var(--navy-mid));border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1rem;border:1px solid rgba(201,168,76,.2);box-shadow:0 8px 32px rgba(14,27,58,.2)}
-.rt-title{font-family:"Cinzel",serif;font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,168,76,.6);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
-.rt-title::after{content:"";flex:1;height:1px;background:rgba(201,168,76,.15)}
-.rt-lines{display:flex;flex-direction:column;gap:.3rem;margin-bottom:.75rem}
-.rt-line{display:flex;justify-content:space-between;font-size:.78rem;color:rgba(255,255,255,.6)}
-.rt-val{font-weight:600;color:#fff}
-.rt-val.free{color:#6fcf97}
-.rt-div{height:1px;background:rgba(201,168,76,.2);margin:.5rem 0}
-.rt-total-row{display:flex;justify-content:space-between;align-items:baseline}
-.rt-total-label{font-family:"Cinzel",serif;font-size:.58rem;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase}
-.rt-total-val{font-family:"Cinzel",serif;font-size:1.9rem;color:var(--gold-bright)}
-.rt-total-val sup{font-size:.95rem;color:var(--gold);vertical-align:super}
-.step{display:none}
-.step.active{display:block;animation:fadeUp .3s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1.75rem;box-shadow:0 2px 20px rgba(14,27,58,.07);margin-bottom:1rem;position:relative;overflow:hidden}
-.card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-bright),var(--gold))}
-.step-num{display:inline-flex;align-items:center;font-family:"Cinzel",serif;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);background:var(--navy);padding:.25rem .85rem;border-radius:20px;margin-bottom:1rem}
-.step-title{font-family:"Cinzel",serif;font-size:1.15rem;color:var(--navy);margin-bottom:.4rem;line-height:1.3}
-.step-sub{font-family:"DM Sans",sans-serif;font-size:.88rem;color:#3d3520;font-weight:500;margin-bottom:1.25rem;line-height:1.6}
-input[type=text],input[type=tel],input[type=email]{width:100%;padding:.9rem 1.1rem;border:2px solid var(--border);border-radius:10px;font-family:"DM Sans",sans-serif;font-size:.97rem;color:var(--text);background:var(--cream);outline:none;transition:border-color .2s,box-shadow .2s;margin-bottom:.7rem}
-input[type=text]:focus,input[type=tel]:focus,input[type=email]:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.15);background:#fff}
-.field-label{font-size:.78rem;font-weight:600;color:var(--navy);margin-bottom:.3rem;display:block;font-family:"Cinzel",serif;letter-spacing:.05em}
-.field-label .req{color:var(--red)}
-.field-label .opt{color:var(--muted);font-weight:400;font-family:"DM Sans",sans-serif;font-size:.7rem;letter-spacing:0}
-.addr-status{font-size:.75rem;margin-top:-.4rem;margin-bottom:.6rem;min-height:1.2rem;line-height:1.4}
-.addr-status.ok{color:var(--green)}
-.addr-status.err{color:var(--red)}
-.addr-status.loading{color:var(--muted)}
-.privacy-note{font-size:.75rem;color:#4a3d20;font-family:"DM Sans",sans-serif;font-weight:500;margin-top:.5rem;line-height:1.5}
-.privacy-note a{color:var(--gold);text-decoration:none}
-.opts{display:flex;flex-direction:column;gap:.6rem}
-.opt-btn{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.15rem;border:2px solid var(--border);border-radius:12px;background:var(--cream);cursor:pointer;transition:all .2s;text-align:left;font-family:"DM Sans",sans-serif;user-select:none;width:100%}
-.opt-btn:hover{border-color:var(--gold);background:#fff;transform:translateY(-1px)}
-.opt-btn.sel{border-color:var(--navy);background:rgba(14,27,58,.04)}
-.opt-btn.sel .opt-chk{background:var(--navy);border-color:var(--navy);color:#fff}
-.opt-left{display:flex;align-items:center;gap:.85rem}
-.opt-chk{width:22px;height:22px;border:2px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:transparent;transition:all .2s;flex-shrink:0}
-.opt-icon{font-size:1.2rem;flex-shrink:0}
-.opt-name{font-size:.92rem;font-weight:600;color:var(--text);display:block}
-.opt-desc{font-family:"DM Sans",sans-serif;font-size:.82rem;color:#4a4a4a;font-weight:400;margin-top:.1rem;display:block}
-.opt-right{text-align:right;flex-shrink:0;margin-left:.75rem}
-.opt-price{font-family:"Cinzel",serif;font-size:1rem;font-weight:700;color:var(--gold)}
-.opt-starting{font-size:.62rem;color:#6b5d3f;display:block;margin-bottom:.1rem;font-family:"DM Sans",sans-serif;font-weight:500}
-.opt-fees{font-size:.62rem;color:#6b5d3f;display:block;margin-top:.1rem;font-family:"DM Sans",sans-serif;font-weight:500}
-.ctr-row{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem;border:2px solid var(--border);border-radius:12px;background:var(--cream);margin-bottom:.6rem;transition:border-color .2s}
-.ctr-row.on{border-color:var(--navy);background:rgba(14,27,58,.03)}
-.ctr-label{font-size:.9rem;font-weight:500}
-.ctr-sub{font-family:"DM Sans",sans-serif;font-size:.8rem;color:#4a4a4a;font-weight:400;margin-top:.1rem}
-.ctr-ctrl{display:flex;align-items:center;gap:.6rem}
-.ctr-btn{width:32px;height:32px;border-radius:50%;border:2px solid var(--border);background:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;color:var(--navy);font-weight:700}
-.ctr-btn:hover{border-color:var(--navy);background:var(--navy);color:#fff}
-.ctr-val{font-family:"Cinzel",serif;font-size:1rem;font-weight:700;min-width:26px;text-align:center}
-.ctr-price{font-family:"Cinzel",serif;font-size:.82rem;color:var(--gold);font-weight:600;margin-left:.6rem;min-width:44px;text-align:right}
-.chks{display:flex;flex-direction:column;gap:.5rem}
-.chk{display:flex;align-items:center;justify-content:space-between;padding:.8rem 1.1rem;border:2px solid var(--border);border-radius:12px;background:var(--cream);cursor:pointer;transition:all .18s;user-select:none}
-.chk:hover{border-color:var(--gold);background:#fff}
-.chk.on{border-color:var(--navy);background:rgba(14,27,58,.04)}
-.chk-left{display:flex;align-items:center;gap:.65rem;pointer-events:none}
-.chk-box{width:18px;height:18px;border:2px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:transparent;transition:all .18s;flex-shrink:0}
-.chk.on .chk-box{background:var(--navy);border-color:var(--navy);color:#fff}
-.chk-name{font-size:.88rem;font-weight:600;display:block}
-.chk-desc{font-family:"DM Sans",sans-serif;font-size:.78rem;color:#4a4a4a;font-weight:400;display:block;margin-top:.1rem}
-.chk-amt{font-family:"Cinzel",serif;font-size:.82rem;color:var(--gold);font-weight:600;pointer-events:none;flex-shrink:0;margin-left:.5rem}
-.nav{display:flex;gap:.75rem;margin-top:1.1rem}
-.btn-next{flex:1;padding:.95rem;background:linear-gradient(135deg,var(--navy),var(--navy-mid));color:var(--gold-bright);border:1px solid rgba(201,168,76,.3);border-radius:10px;font-family:"Cinzel",serif;font-size:.88rem;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .2s}
-.btn-next:hover{opacity:.9;transform:translateY(-1px)}
-.btn-back{padding:.95rem 1.3rem;background:none;color:var(--muted);border:2px solid var(--border);border-radius:10px;font-family:"DM Sans",sans-serif;font-size:.88rem;cursor:pointer;transition:all .18s}
-.btn-back:hover{border-color:var(--navy);color:var(--navy)}
-.sum-card{background:#fff;border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 8px 40px rgba(14,27,58,.12)}
-.sum-hdr{background:linear-gradient(160deg,#0a1530,#0e1b3a 50%,#152040);padding:2rem 1.75rem;text-align:center;position:relative;overflow:hidden}
-.sum-hdr::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,.18),transparent 65%)}
-.sum-logo{width:60px;height:60px;margin:0 auto .75rem;position:relative}
-.sum-logo img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 2px 12px rgba(201,168,76,.4))}
-.sum-badge{display:inline-block;background:rgba(201,168,76,.18);color:var(--gold-pale);font-family:"Cinzel",serif;font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:.22rem .8rem;border-radius:20px;border:1px solid rgba(201,168,76,.3);margin-bottom:.75rem;position:relative}
-.sum-total-lbl{font-family:"Cinzel",serif;font-size:.6rem;letter-spacing:.15em;color:rgba(255,255,255,.45);text-transform:uppercase;position:relative}
-.sum-total-amt{font-family:"Cinzel",serif;font-size:3rem;color:var(--gold-bright);line-height:1.05;text-shadow:0 2px 20px rgba(201,168,76,.3);position:relative}
-.sum-total-amt sup{font-size:1.4rem;color:var(--gold);vertical-align:super}
-.dep-pills{display:flex;flex-direction:column;gap:.4rem;margin-top:1rem;position:relative}
-.dep-pill{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:.55rem 1rem}
-.dep-pill.hi{background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.45)}
-.dp-lbl{color:rgba(255,255,255,.65);font-size:.78rem}
-.dp-lbl.b{color:rgba(255,255,255,.9);font-weight:600}
-.dp-val{font-family:"Cinzel",serif;color:var(--gold-pale);font-weight:700;font-size:.95rem}
-.dp-val.lg{font-size:1.15rem}
-.sum-body{padding:1.6rem 1.75rem}
-.sum-sec{font-family:"Cinzel",serif;font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
-.sum-sec::after{content:"";flex:1;height:1px;background:var(--cream-dark)}
-.sum-line{display:flex;justify-content:space-between;align-items:baseline;padding:.45rem 0;border-bottom:1px dashed rgba(0,0,0,.06)}
-.sum-line:last-child{border-bottom:none}
-.sum-key{color:#3d3520;font-family:"DM Sans",sans-serif;font-size:.88rem;font-weight:500}
-.sum-val{font-weight:600;font-size:.88rem}
-.sum-val.free{color:var(--green)}
-.sum-div{height:1px;background:var(--cream-dark);margin:.9rem 0}
-.sum-tot-row{display:flex;justify-content:space-between;align-items:center;padding:.3rem 0}
-.stl{font-family:"Cinzel",serif;font-size:.6rem;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
-.stv{font-family:"Cinzel",serif;font-size:1.25rem;color:var(--navy)}
-.stv.gold{color:var(--gold)}
-.disc{background:var(--cream);border:1px solid var(--cream-dark);border-left:3px solid var(--gold);border-radius:8px;padding:.85rem 1rem;margin-top:1rem}
-.disc p{font-family:"DM Sans",sans-serif;font-size:.82rem;color:#3d2e0f;font-weight:500;line-height:1.6;margin-bottom:.5rem}
-.disc p:last-child{margin-bottom:0}
-.policy{background:rgba(139,31,47,.05);border:1px solid rgba(139,31,47,.15);border-left:3px solid var(--red);border-radius:8px;padding:.85rem 1rem;margin-top:.6rem}
-.policy p{font-family:"DM Sans",sans-serif;font-size:.82rem;color:#3a1820;font-weight:500;line-height:1.6}
-.followup-sum{display:flex;align-items:flex-start;gap:.65rem;margin-top:.9rem;cursor:pointer;user-select:none;padding:.85rem 1rem;border:2px solid var(--border);border-radius:12px;background:var(--cream);transition:border-color .2s}
-.followup-sum:hover{border-color:var(--gold)}
-.followup-sum.on{border-color:var(--navy);background:rgba(14,27,58,.03)}
-.followup-sum-chk{width:18px;height:18px;border:2px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:transparent;transition:all .18s;flex-shrink:0;margin-top:.15rem}
-.followup-sum-chk.on{background:var(--navy);border-color:var(--navy);color:#fff}
-.actions{display:flex;flex-direction:column;gap:.75rem;margin-top:1.1rem}
-.act-btn{flex:1;padding:.8rem;border-radius:9px;font-family:"Cinzel",serif;font-size:.78rem;font-weight:600;letter-spacing:.06em;cursor:pointer;border:none;transition:all .18s;text-align:center;text-decoration:none;display:block}
-.act-btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:var(--navy);box-shadow:0 2px 12px rgba(201,168,76,.35)}
-.act-btn.gold:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(201,168,76,.45)}
-.act-btn.outline{background:var(--cream);color:var(--navy);border:2px solid var(--border)}
-.act-btn.outline:hover{border-color:var(--navy)}
-.act-btn.ghost{background:none;border:2px solid var(--gold);color:var(--gold)}
-.act-btn.ghost:hover{background:rgba(201,168,76,.08)}
-@media print{
-  header,.not-booking-bar,.prog-wrap,.rt,.step:not(#step7),.actions,footer{display:none !important}
-  #step7{display:block !important}
-  body{background:white;margin:0;padding:0}
-  .sum-card{box-shadow:none;border:1px solid #ccc;border-radius:0}
-  .sum-hdr{-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:1.25rem 1.5rem}
-  .sum-total-amt{font-size:2rem}
-  .sum-body{padding:1rem 1.5rem}
-  .sum-key,.sum-val,.stl,.stv{color:#000 !important}
-  .sum-key{color:#333 !important}
-  .disc,.policy{display:block !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .disc p,.policy p{color:#000 !important}
-  .print-header{display:flex !important;align-items:center;gap:1rem;padding:1rem 1.5rem .75rem;border-bottom:2px solid #c9a84c;margin-bottom:.5rem}
-  .print-logo{width:70px;height:70px;object-fit:contain}
-  .print-title{text-align:left}.print-title h2{font-family:"Cinzel",serif;font-size:1.2rem;color:#000;letter-spacing:.04em}
-  .print-title p{font-size:.75rem;color:#0e1b3a;font-weight:600;margin-top:.2rem}
+.video-overlay {
+  display: none;
 }
-.print-header{display:none}
-.modal-overlay,.tos-overlay{display:none;position:fixed;inset:0;background:rgba(14,27,58,.82);z-index:1000;align-items:center;justify-content:center;padding:1rem}
-.modal-overlay.open,.tos-overlay.open{display:flex}
-.modal-box,.tos-box{background:#fff;border-radius:16px;max-width:580px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:fadeUp .3s ease;overflow:hidden}
-.tos-box{display:flex;flex-direction:column;overflow:hidden}
-.modal-header{background:linear-gradient(135deg,#0a1530,#0e1b3a) !important;padding:1.1rem 1.5rem;border-radius:16px 16px 0 0;display:flex;justify-content:space-between;align-items:center;gap:.75rem;border-bottom:2px solid rgba(201,168,76,.3);color:#fff !important}.tos-header{background:linear-gradient(135deg,#0a1530,#0e1b3a);padding:1.1rem 1.5rem;border-radius:16px 16px 0 0;display:flex;justify-content:space-between;align-items:center;gap:.75rem;border-bottom:2px solid rgba(201,168,76,.3)}
-.modal-header-logo,.tos-header-logo{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(201,168,76,.4));flex-shrink:0}
-.modal-header-text,.tos-header-text{flex:1}
-.modal-title,.tos-title{font-family:"Cinzel",serif;color:var(--gold-bright);font-size:.92rem;letter-spacing:.06em;display:block}
-.modal-subtitle,.tos-subtitle{font-size:.68rem;color:rgba(255,255,255,.85);margin-top:.15rem;display:block}
-.modal-close,.tos-close{background:none;border:none;color:rgba(255,255,255,.6);font-size:1.3rem;cursor:pointer;padding:.25rem .5rem;flex-shrink:0}
-.modal-close:hover,.tos-close:hover{color:#fff}
-.modal-body{padding:1.5rem;font-family:"EB Garamond",serif;font-size:.95rem;line-height:1.7;color:var(--text)}
-.modal-line{display:flex;justify-content:space-between;padding:.35rem 0;border-bottom:1px dashed rgba(0,0,0,.08)}
-.modal-line:last-child{border-bottom:none}
-.modal-key{color:var(--muted)}
-.modal-val{font-weight:600;font-family:"DM Sans",sans-serif}
-.modal-val.free{color:var(--green)}
-.modal-divider{height:1px;background:var(--cream-dark);margin:.75rem 0}
-.modal-total{display:flex;justify-content:space-between;padding:.3rem 0}
-.modal-total-lbl{font-family:"Cinzel",serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.modal-total-val{font-family:"Cinzel",serif;font-size:1.2rem;color:var(--navy)}
-.modal-total-val.gold{color:var(--gold)}
-.modal-notice{background:var(--cream);border-left:3px solid var(--gold);padding:.75rem 1rem;border-radius:6px;margin-top:1rem;font-size:.88rem;color:#4a3d20;line-height:1.6}
-.modal-notice p{margin-bottom:.35rem}
-.modal-notice p:last-child{margin-bottom:0}
-.modal-policy{background:rgba(139,31,47,.05);border-left:3px solid var(--red);padding:.75rem 1rem;border-radius:6px;margin-top:.5rem;font-size:.88rem;color:#3a1820;line-height:1.6}
-.modal-actions{display:flex;gap:.75rem;padding:1rem 1.5rem 1.5rem}
-.modal-btn{flex:1;padding:.75rem;border-radius:8px;font-family:"Cinzel",serif;font-size:.75rem;font-weight:600;letter-spacing:.06em;cursor:pointer;border:none;transition:all .18s}
-.modal-btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold-bright));color:var(--navy)}
-.modal-btn.gold:hover{transform:translateY(-1px)}
-.modal-btn.outline{background:var(--cream);color:var(--navy);border:2px solid var(--border)}
-.tos-body{padding:1.5rem;overflow-y:auto;flex:1;font-family:"EB Garamond",serif;font-size:.92rem;color:#1a1a1a;line-height:1.7}
-.tos-section{margin-bottom:1.1rem}
-.tos-section h4{font-family:"Cinzel",serif;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#0e1b3a;margin-bottom:.4rem;border-bottom:1px solid #ede5d0;padding-bottom:.25rem}
-.tos-section p{margin-bottom:.4rem}
-.tos-section ul{margin:.3rem 0 .4rem 1.2rem}
-.tos-section ul li{margin-bottom:.2rem}
-.tos-footer{padding:1.1rem 1.5rem;border-top:1px solid #ede5d0;flex-shrink:0;background:#f8f3e8;border-radius:0 0 16px 16px}
-.tos-agree-row{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.85rem;cursor:pointer;user-select:none}
-.tos-chk{width:20px;height:20px;border:2px solid #cfc0a0;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:transparent;transition:all .18s;flex-shrink:0;margin-top:.1rem}
-.tos-chk.checked{background:#0e1b3a;border-color:#0e1b3a;color:#fff}
-.tos-agree-text{font-family:"DM Sans",sans-serif;font-size:.82rem;color:#333;line-height:1.5}
-.tos-btns{display:flex;gap:.75rem}
-.tos-btn{flex:1;padding:.8rem;border-radius:9px;font-family:"Cinzel",serif;font-size:.78rem;font-weight:600;letter-spacing:.06em;cursor:pointer;border:none;transition:all .18s}
-.tos-btn.gold{background:linear-gradient(135deg,#c9a84c,#e8c96a);color:#0e1b3a;opacity:.4;pointer-events:none}
-.tos-btn.gold.active{opacity:1;pointer-events:auto;box-shadow:0 2px 12px rgba(201,168,76,.4)}
-.tos-btn.cancel{background:#f8f3e8;color:#6b7280;border:2px solid #cfc0a0}
-footer{text-align:center;padding:1.5rem;font-size:.73rem;color:var(--muted);border-top:1px solid var(--border)}
-footer a{color:var(--gold);text-decoration:none;font-weight:500}
+
+.page-wrap { position: relative; z-index: 2; }
+
+/* ── HERO HEADER — light top gradient, fades on scroll ── */
+.hero-header {
+  width: 100%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 36px 40px 28px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.15) 0%,
+    rgba(255,255,255,0.06) 55%,
+    rgba(255,255,255,0.0) 100%);
+  transition: opacity 0.3s ease;
+}
+.hero-header img { height: 140px; max-width: 700px; object-fit: contain; }
+
+/* ── TRUST BAR ── */
+.trust-bar {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.78rem, 1.3vw, 1rem);
+  font-weight: 600; letter-spacing: 0.16em;
+  color: #c9a84c;
+  padding: 0 0 18px;
+}
+
+/* ── BUTTONS — full width, transparent bg ── */
+.steps-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: transparent;
+}
+.step-btn {
+  display: block; text-decoration: none;
+  transition: transform 0.2s, filter 0.2s;
+  cursor: pointer;
+  mix-blend-mode: lighten;
+}
+.step-btn:hover { transform: translateY(-2px); filter: brightness(1.12); }
+.step-btn img { width: 100%; height: auto; display: block; }
+
+/* Sign & Seal — no interaction */
+.step-btn-static {
+  display: block;
+  cursor: default;
+  mix-blend-mode: lighten;
+}
+.step-btn-static img { width: 100%; height: auto; display: block; }
+
+/* ── TWO COLUMN — outer wrapper rounded + dark ── */
+.main-content {
+  width: 100%; max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.6);
+}
+
+/* ── ACCORDION — darker, more opaque ── */
+.accordion-panel {
+  background: rgba(10, 20, 38, 0.82);
+  border-right: 1px solid rgba(201,168,76,0.25);
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+.accordion-item { border-bottom: 1px solid rgba(201,168,76,0.2); }
+.accordion-item:last-child { border-bottom: none; }
+.accordion-trigger {
+  width: 100%; background: none; border: none;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 28px; cursor: pointer; gap: 12px; text-align: left;
+}
+.accordion-trigger:hover { background: rgba(201,168,76,0.08); }
+.acc-title { font-family: 'Raleway', sans-serif; font-size: 0.88rem; font-weight: 500; color: rgba(255,255,255,0.9); letter-spacing: 0.02em; }
+.acc-plus { font-size: 1.1rem; color: rgba(255,255,255,0.55); transition: transform 0.3s; flex-shrink: 0; }
+.accordion-item.open .acc-plus { transform: rotate(45deg); }
+.accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.accordion-item.open .accordion-body { max-height: 6000px; }
+.accordion-inner { padding: 4px 28px 24px; font-family: 'EB Garamond', serif; font-size: 1rem; line-height: 1.82; color: rgba(255,255,255,0.85); }
+.accordion-inner h4 { font-family: 'Raleway', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #c9a84c; margin: 16px 0 4px; }
+.accordion-inner h4:first-child { margin-top: 0; }
+.accordion-inner p { margin-bottom: 10px; }
+.accordion-inner ul { list-style: none; padding: 0; }
+.accordion-inner ul li { padding: 2px 0 2px 14px; position: relative; }
+.accordion-inner ul li::before { content: '·'; position: absolute; left: 0; color: #c9a84c; }
+
+/* ── REVIEWS — darker, more opaque ── */
+.reviews-panel {
+  background: rgba(10, 20, 38, 0.78);
+  padding: 24px 24px 28px;
+  display: flex; flex-direction: column; gap: 16px;
+  backdrop-filter: blur(8px);
+}
+.review-card {
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+.review-stars { color: #c9a84c; font-size: 0.88rem; margin-bottom: 8px; letter-spacing: 3px; }
+.review-text { font-family: 'EB Garamond', serif; font-size: 1rem; line-height: 1.72; color: rgba(255,255,255,0.88); font-style: italic; margin-bottom: 10px; }
+.review-attr { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.38); text-align: right; }
+
+/* ── PHOTO CREDIT ── */
+.photo-section {
+  position: relative; width: 100%;
+  min-height: 80px;
+  display: flex; align-items: flex-end; justify-content: flex-end;
+  padding: 12px 16px;
+}
+.photo-credit-wrap { display: flex; align-items: center; gap: 8px; }
+.photo-credit-wrap a { text-decoration: none; display: flex; align-items: center; }
+.photo-sig { height: 32px; width: auto; opacity: 0.65; transition: opacity 0.2s; }
+.photo-sig:hover { opacity: 1; }
+.photo-credit-text { font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; font-style: italic; text-decoration: none; transition: color 0.2s; }
+.photo-credit-text:hover { color: #c9a84c; }
+
+/* ── FOOTER — contains badges + info ── */
+footer {
+  border-top: 1px solid rgba(201,168,76,0.15);
+  padding: 32px 24px 20px;
+  text-align: center;
+  background: rgba(10,18,34,0.62);
+  backdrop-filter: blur(8px);
+}
+
+/* BADGES inside footer */
+.badges-grid {
+  display: flex; flex-wrap: wrap;
+  justify-content: center; gap: 24px;
+  max-width: 1100px; margin: 0 auto 20px;
+}
+.badge-item { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100px; text-align: center; }
+.badge-item img { width: 72px; height: 72px; object-fit: contain; filter: drop-shadow(0 4px 12px rgba(201,168,76,0.3)); transition: transform 0.2s, filter 0.2s; }
+.badge-item:hover img { transform: scale(1.07); filter: drop-shadow(0 6px 20px rgba(201,168,76,0.55)); }
+.badge-title { font-family: 'Cinzel', serif; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; line-height: 1.3; }
+.badge-sub { font-size: 0.58rem; color: rgba(255,255,255,0.42); letter-spacing: 0.04em; line-height: 1.4; }
+
+.footer-divider { width: 60px; height: 1px; background: rgba(201,168,76,0.35); margin: 0 auto 16px; }
+
+.footer-social { display: flex; gap: 10px; align-items: center; justify-content: center; margin: 10px 0; }
+.social-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px;
+  border: 1px solid rgba(201,168,76,0.5);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 0.82rem; font-weight: 700;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.social-btn:hover { border-color: #c9a84c; color: #c9a84c; background: rgba(201,168,76,0.1); }
+.footer-links { display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.footer-links a { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(201,168,76,0.75); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: #c9a84c; }
+.footer-copy { font-size: 0.62rem; color: rgba(255,255,255,0.28); letter-spacing: 0.04em; line-height: 1.5; margin-top: 10px; }
+.footer-bar { max-width: 1200px; margin: 0 auto; }
 </style>
-<!-- PayPal SDK — replace YOUR_PAYPAL_CLIENT_ID with your live Client ID from developer.paypal.com -->
-<!-- <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script> -->
 </head>
 <body>
-<header>
-  <div class="header-inner">
-    <div class="logo-wrap"><img src="logo.png" alt="Round the Clock Notary"></div>
-    <div>
-      <h1>Round the Clock Notary</h1>
-      <div class="tagline"><span class="tagline-line"></span><span>Hood County, Texas</span><span class="tagline-line r"></span></div>
-      <div class="sub-tag">Available When It Matters Most &middot; Around the Clock</div>
-    </div>
+
+<!-- VIDEO BG -->
+<video class="video-bg" autoplay muted loop playsinline oncanplay="this.playbackRate=0.25;">
+  <source src="https://laceesharee.github.io/rtc-links/Courthouse_at_dusk_timelapse_9fced4f026.mp4" type="video/mp4">
+</video>
+<div class="video-overlay"></div>
+
+<div class="page-wrap">
+
+  <!-- HERO HEADER -->
+  <div class="hero-header" id="heroHeader">
+    <img src="logo__5_.png" alt="Round The Clock Notary">
   </div>
-</header>
-<div class="gold-rule"></div>
-<div class="not-booking-bar">
-  &#128274; This is a <strong>FREE QUOTE TOOL ONLY</strong> &mdash; not a booking system.
-  To book your appointment visit <a href="https://roundtheclocknotaryhoodcounty.as.me/schedule/233e6be1" target="_blank">our scheduling site</a>.
-</div>
-<div class="wrapper">
-  <div class="prog-wrap">
-    <div class="prog-bg"><div class="prog-fill" id="progressFill"></div></div>
-    <div class="prog-label" id="progressLabel">Step 1 of 6</div>
-  </div>
-  <div class="rt" id="runningTotal" style="display:none">
-    <div class="rt-title">Running Total</div>
-    <div class="rt-lines" id="rtLines"><div class="rt-line"><span style="color:rgba(255,255,255,.28)">No items yet</span></div></div>
-    <div class="rt-div"></div>
-    <div class="rt-total-row">
-      <span class="rt-total-label">Estimated Total</span>
-      <span class="rt-total-val"><sup>$</sup><span id="rtTotalNum">0.00</span></span>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">Licensed | Bonded | Insured | 24/7 Mobile</div>
+
+  <!-- 3 BUTTONS -->
+  <div class="steps-row">
+    <a href="https://laceesharee.github.io/rtc-notary-calculator/" class="step-btn">
+      <img src="now.png" alt="Free Quote">
+    </a>
+    <a href="https://roundtheclocknotaryhoodcounty.as.me/schedule/233e6be1" class="step-btn">
+      <img src="now__2_.png" alt="Book Now">
+    </a>
+    <div class="step-btn-static">
+      <img src="now__5_.png" alt="Sign & Seal">
     </div>
   </div>
 
-  <!-- STEP 1: Location -->
-  <div class="step active" id="step1">
-    <div class="card">
-      <div class="step-num">Step 1 of 6 &middot; Location</div>
-      <div class="step-title">Where Should the Clock Stop?</div>
-      <div class="step-sub">Enter your appointment address. We can meet at your home, a coffee shop, local business, medical facility, or any public place that works for you. Locations within 5 miles of either Granbury Post Office receive free travel.</div>
-      <input type="text" id="addressInput" placeholder="123 Oak Street, Granbury TX 76048" autocomplete="off">
-      <div class="addr-status" id="addrStatus"></div>
-      <div class="privacy-note">&#128274; Your information is used only to prepare your quote and to book your appointment. Please visit our <a href="https://roundtheclocknotaryhoodcounty.as.me/schedule/233e6be1" target="_blank">booking site</a> to schedule. We never sell or share your data.</div>
-      <div class="nav"><button class="btn-next" id="addrNextBtn">Find My Location &#8594;</button></div>
-    </div>
-  </div>
+  <!-- TWO COLUMN -->
+  <div class="main-content">
 
-  <!-- STEP 2: Service -->
-  <div class="step" id="step2">
-    <div class="card">
-      <div class="step-num">Step 2 of 6 &middot; Service</div>
-      <div class="step-title">Choose Your Timepiece</div>
-      <div class="step-sub">Select the service that fits your needs. Additional fees and services may apply.</div>
-      <div class="opts">
-        <button class="opt-btn" data-service="second">
-          <div class="opt-left">
-            <div class="opt-chk">&#10003;</div>
-            <div class="opt-icon">&#128196;</div>
-            <div>
-              <span class="opt-name">Second Hand</span>
-              <span class="opt-desc">Quick. Simple. Done in seconds. 1 document &mdash; single notarial act, one visit, mobile.</span>
-            </div>
-          </div>
-          <div class="opt-right">
-            <span class="opt-starting">Starting at</span>
-            <span class="opt-price">$30</span>
-            <span class="opt-fees">+ fees may apply</span>
-          </div>
+    <!-- ACCORDION -->
+    <div class="accordion-panel">
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggle(this)">
+          <span class="acc-title">Before the Clock Starts – FAQ</span>
+          <span class="acc-plus">+</span>
         </button>
-        <button class="opt-btn" data-service="minute">
-          <div class="opt-left">
-            <div class="opt-chk">&#10003;</div>
-            <div class="opt-icon">&#9203;</div>
-            <div>
-              <span class="opt-name">Minute Hand</span>
-              <span class="opt-desc">More documents. One visit &mdash; multiple notarial acts in a single appointment.</span>
-            </div>
-          </div>
-          <div class="opt-right">
-            <span class="opt-starting">Starting at</span>
-            <span class="opt-price">$30</span>
-            <span class="opt-fees">+ fees may apply</span>
-          </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <h4>What Does a Notary Public Do</h4>
+          <p>A Texas notary public verifies identity and witnesses the signing of documents. The notary confirms the signer appears willing and aware of the document being signed. A notary does not review or approve the legal content of a document.</p>
+          <h4>Can a Notary Give Legal Advice</h4>
+          <p>No. Texas notaries are not attorneys. A notary cannot explain legal meaning, choose forms, or advise how to complete documents. Speak with a licensed attorney if legal guidance is needed.</p>
+          <h4>How Much Does Notarization Cost</h4>
+          <p>Texas law sets the maximum fee for the notarial act itself. Additional service costs such as travel, printing, wait time, and after-hours appointments are separate. Use the Free Quote Calculator to see an estimated total before booking.</p>
+          <h4>Why Do You Charge Travel Fees</h4>
+          <p>Mobile notary services travel to your home, office, hospital, or other location. Travel fees cover time, distance, and transportation costs once the notary begins traveling. Travel fees apply regardless of whether the notarization is completed.</p>
+          <h4>Why Do Prices Change at Night or on Weekends</h4>
+          <p>Evening, late night, weekend, and holiday appointments include additional service charges. The quote builder calculates this automatically based on your appointment time.</p>
+          <h4>What Identification Is Required</h4>
+          <p>Every signer must present valid government-issued photo identification. Common acceptable identification includes a driver's license, state ID card, or passport.</p>
+          <h4>What Should I Bring to My Appointment</h4>
+          <p>Bring the complete document ready for signature. Do not sign before the appointment unless specifically required. All signers must be present with valid photo ID.</p>
+          <h4>Can a Document Be Notarized if It Is Incomplete</h4>
+          <p>No. Texas law prohibits notarizing documents with blank spaces or incomplete sections. If documents are incomplete, the appointment will be canceled and travel fees still apply.</p>
+          <h4>Do All Signers Need to Be Present</h4>
+          <p>Yes. Every signer must appear before the notary at the same time unless the document specifically allows separate notarizations.</p>
+          <h4>What Happens if Someone Does Not Show Up</h4>
+          <p>The 15-minute waiting period begins at the scheduled appointment time. If the notarization has not begun within 15 minutes, the visit is treated as a completed service call and the deposit is non-refundable.</p>
+          <h4>What Happens if I Cancel My Appointment</h4>
+          <p>Appointments canceled less than 24 hours before the scheduled time are non-refundable.</p>
+          <h4>How Do Remote Online Notarizations Work</h4>
+          <p>Remote Online Notarization uses identity verification technology and live audio-video recording. Additional platform fees may apply and are the responsibility of the client.</p>
+          <h4>Do You Offer Discounts</h4>
+          <p>Yes. A 10 percent service discount is available for active military, veterans, first responders, educators, and seniors age 65 and older. Valid identification required at time of service.</p>
+          <h4>Do You Provide Witnesses</h4>
+          <p>Witness services are available by request and may include an additional service fee. Witnesses must present valid government-issued photo identification at the appointment.</p>
+        </div></div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggle(this)">
+          <span class="acc-title">Why Trust Our Seal – About Us</span>
+          <span class="acc-plus">+</span>
         </button>
-        <button class="opt-btn" data-service="bedside">
-          <div class="opt-left">
-            <div class="opt-chk">&#10003;</div>
-            <div class="opt-icon">&#127973;</div>
-            <div>
-              <span class="opt-name">Bedside Clock</span>
-              <span class="opt-desc">Mobile notarization for hospitals and care facilities &mdash; compassionate, flat fee service.</span>
-            </div>
-          </div>
-          <div class="opt-right">
-            <span class="opt-price">$75</span>
-            <span class="opt-fees">flat fee</span>
-          </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <h4>Founded by Lacee "Sharee" Westlund</h4>
+          <p>Some people choose a career in public service. For Sharee Westlund, it was never a choice — it was simply who she is.</p>
+          <p>A lifelong Texan and proud Hood County resident, Sharee has spent decades showing up for her community in the ways that matter most.</p>
+          <p>Sharee holds a Bachelor of Business Administration from West Texas A&M University and a Master of Science in Human Resource Management from Tarleton State University.</p>
+          <p>Round the Clock Notary was built on a simple belief: that when life calls for a notary — whether it is a real estate closing, a hospital bedside, or a late-night emergency — you deserve someone who is not only qualified, but trustworthy.</p>
+        </div></div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggle(this)">
+          <span class="acc-title">Sealed Up – Terms &amp; Conditions</span>
+          <span class="acc-plus">+</span>
         </button>
-        <button class="opt-btn" data-service="closing">
-          <div class="opt-left">
-            <div class="opt-chk">&#10003;</div>
-            <div class="opt-icon">&#127968;</div>
-            <div>
-              <span class="opt-name">Closing Table</span>
-              <span class="opt-desc">Loan Signing and Real Estate Closing &mdash; professional, all signatures included, flat fee.</span>
-            </div>
-          </div>
-          <div class="opt-right">
-            <span class="opt-price">$150</span>
-            <span class="opt-fees">flat fee</span>
-          </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <h4>Service Description</h4>
+          <p>Round The Clock Notary provides mobile notary and remote online notarization services in accordance with Texas law. The notary does not represent any party in the transaction and does not participate in the legal content of documents.</p>
+          <h4>Legal Advice Disclaimer</h4>
+          <p>The notary public is not an attorney and does not provide legal advice. If legal advice is required, consult a licensed attorney before scheduling service.</p>
+          <h4>Deposit and Appointment Policy</h4>
+          <p>A deposit is required to secure all appointments. It becomes non-refundable upon cancellation less than 24 hours before the appointment, signer failure to appear, or inability to complete due to missing identification or incomplete documents.</p>
+          <h4>Travel Fees</h4>
+          <p>Travel fees apply once the notary begins travel and are non-refundable even if the notarization cannot be completed.</p>
+          <h4>Limitation of Liability</h4>
+          <p>Liability is limited to the lesser of: (a) total fees paid for the specific service, or (b) the applicable E&O insurance limits.</p>
+          <h4>Governing Law</h4>
+          <p>Governed by the laws of the State of Texas. Disputes submitted to good-faith mediation in Hood County, Texas first. Rev. 03/2026.</p>
+        </div></div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggle(this)">
+          <span class="acc-title">Clock Master – Certifications</span>
+          <span class="acc-plus">+</span>
         </button>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul>
+            <li>Texas Commissioned Notary Public</li>
+            <li>Remote Online Notary Certification Texas</li>
+            <li>National Notary Association Certified Notary Signing Agent</li>
+            <li>NNA Background Screened Notary</li>
+            <li>Loan Signing Agent Certification</li>
+            <li>Real Estate Loan Document Training</li>
+            <li>Remote Online Notary Technology Certification</li>
+            <li>Electronic Notary Training</li>
+            <li>Mortgage Loan Closing Training</li>
+            <li>Identity Verification and Fraud Prevention Training</li>
+            <li>Continuing Notary Education Courses</li>
+            <li>Notary Errors and Omissions Insurance</li>
+            <li>Texas Required Notary Surety Bond</li>
+          </ul>
+        </div></div>
       </div>
-      <div class="nav">
-        <button class="btn-back" id="back2">&#8592; Back</button>
-        <button class="btn-next" id="next2">Continue &#8594;</button>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggle(this)">
+          <span class="acc-title">By The Book – Legal Notices, Privacy Policy &amp; Accessibility</span>
+          <span class="acc-plus">+</span>
+        </button>
+        <div class="accordion-body"><div class="accordion-inner">
+          <h4>Not an Attorney</h4>
+          <p>Not an attorney. Not legal advice.</p>
+          <h4>Copyright</h4>
+          <p>© 2026 Round The Clock Notary. All rights reserved.</p>
+          <h4>Privacy Policy</h4>
+          <p>Information collected is used solely to provide the requested service. Personal information is not sold, rented, or shared with third parties for marketing purposes. Complies with Texas HB300 and applicable HIPAA requirements.</p>
+          <h4>Accessibility</h4>
+          <p>Mobile notary service traveling to the client location — supporting homebound clients, assisted living, hospitals, and hospice settings.</p>
+          <h4>Contact</h4>
+          <p>Round The Clock Notary · ByPatience LLC<br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f49d9a929bb4a69b819a90a09c91b7989b979fba9b8095868dda979b99">[email&#160;protected]</a> · 817-512-7217<br>Rev. 03/2026</p>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- REVIEWS -->
+    <div class="reviews-panel">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Professional, punctual, and trustworthy. The notary walked us through the process, verified everything carefully, and made the signing simple and stress free. You want someone honest handling your documents. This service delivered exactly that."</p>
+        <p class="review-attr">— Verified Client</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Needed a document notarized late in the evening. The service was prompt and organized. The notary verified everything carefully and explained each step."</p>
+        <p class="review-attr">— Verified Clients</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"She came to the hospital on short notice. Professional, calm, and made an incredibly stressful situation so much easier."</p>
+        <p class="review-attr">— Verified Client</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The online booking and fee calculator made it so easy. No surprises. Showed up on time, knew exactly what she was doing."</p>
+        <p class="review-attr">— Verified Client</p>
       </div>
     </div>
   </div>
 
-  <!-- STEP 3: Add-Ons -->
-  <div class="step" id="step3">
-    <div class="card">
-      <div class="step-num">Step 3 of 6 &middot; Add-Ons</div>
-      <div class="step-title">Fine Tune the Clock</div>
-      <div class="step-sub" id="step3Sub">All optional. Your running total updates as you go.</div>
-      <div class="ctr-row" id="print1Row">
-        <div>
-          <div class="ctr-label">&#128203; Add On #1 &middot; Single Time</div>
-          <div class="ctr-sub">Printed Color page 1 sided &middot; $1.00 per page</div>
-        </div>
-        <div style="display:flex;align-items:center">
-          <div class="ctr-ctrl">
-            <button class="ctr-btn" data-target="print1" data-dir="-1">&#8722;</button>
-            <div class="ctr-val" id="print1Val">0</div>
-            <button class="ctr-btn" data-target="print1" data-dir="1">&#43;</button>
-          </div>
-          <div class="ctr-price" id="print1Price">$0.00</div>
-        </div>
-      </div>
-      <div class="ctr-row" id="print2Row">
-        <div>
-          <div class="ctr-label">&#128202; Add On #2 &middot; Double Time</div>
-          <div class="ctr-sub">Duplex Full Color Print &middot; $1.50 per page</div>
-        </div>
-        <div style="display:flex;align-items:center">
-          <div class="ctr-ctrl">
-            <button class="ctr-btn" data-target="print2" data-dir="-1">&#8722;</button>
-            <div class="ctr-val" id="print2Val">0</div>
-            <button class="ctr-btn" data-target="print2" data-dir="1">&#43;</button>
-          </div>
-          <div class="ctr-price" id="print2Price">$0.00</div>
-        </div>
-      </div>
-      <div class="ctr-row" id="witnessRow">
-        <div>
-          <div class="ctr-label">&#128065; Add On #3 &middot; Watch The Clock</div>
-          <div class="ctr-sub">Notary Provided Witness &middot; $20 per witness</div>
-        </div>
-        <div style="display:flex;align-items:center">
-          <div class="ctr-ctrl">
-            <button class="ctr-btn" data-target="witness" data-dir="-1">&#8722;</button>
-            <div class="ctr-val" id="witnessVal">0</div>
-            <button class="ctr-btn" data-target="witness" data-dir="1">&#43;</button>
-          </div>
-          <div class="ctr-price" id="witnessPrice">$0.00</div>
-        </div>
-      </div>
-      <div class="ctr-row" id="extraTicksRow" style="display:none">
-        <div>
-          <div class="ctr-label">&#128338; Add On #4 &middot; Extra Ticks</div>
-          <div class="ctr-sub">Additional Signatures on a single page &middot; $10 each</div>
-        </div>
-        <div style="display:flex;align-items:center">
-          <div class="ctr-ctrl">
-            <button class="ctr-btn" data-target="extraTicks" data-dir="-1">&#8722;</button>
-            <div class="ctr-val" id="extraTicksVal">0</div>
-            <button class="ctr-btn" data-target="extraTicks" data-dir="1">&#43;</button>
-          </div>
-          <div class="ctr-price" id="extraTicksPrice">$0.00</div>
-        </div>
-      </div>
-      <div class="ctr-row" id="minuteSealsRow" style="display:none">
-        <div>
-          <div class="ctr-label">&#9203; Add On #5 &middot; Minute Hand</div>
-          <div class="ctr-sub">Multiple documents completed in one appointment &middot; Per Notary Seal Stamp &middot; $10 each</div>
-        </div>
-        <div style="display:flex;align-items:center">
-          <div class="ctr-ctrl">
-            <button class="ctr-btn" data-target="minuteSeals" data-dir="-1">&#8722;</button>
-            <div class="ctr-val" id="minuteSealsVal">0</div>
-            <button class="ctr-btn" data-target="minuteSeals" data-dir="1">&#43;</button>
-          </div>
-          <div class="ctr-price" id="minuteSealsPrice">$0.00</div>
-        </div>
-      </div>
-      <div class="nav">
-        <button class="btn-back" id="back3">&#8592; Back</button>
-        <button class="btn-next" id="next3">Continue &#8594;</button>
-      </div>
+  <!-- PHOTO CREDIT -->
+  <div class="photo-section">
+    <div class="photo-credit-wrap">
+      <a href="https://jenniferkochis.zenfoliosite.com/" target="_blank">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/24637c62-49a3-4425-800a-51669b665f3c/Untitled+design+%2811%29.png" alt="Jennifer Kochis Photography" class="photo-sig">
+      </a>
+      <a href="https://jenniferkochis.zenfoliosite.com/" target="_blank" class="photo-credit-text">Photo Credit — Jennifer Kochis</a>
     </div>
   </div>
 
-  <!-- STEP 4: Timing -->
-  <div class="step" id="step4">
-    <div class="card">
-      <div class="step-num">Step 4 of 6 &middot; Timing</div>
-      <div class="step-title">Set the Clock</div>
-      <div class="step-sub">Check all that apply. If none apply, just continue.</div>
-      <div class="chks">
-        <div class="chk" data-key="rushhour" data-amt="100">
-          <div class="chk-left">
-            <div class="chk-box">&#10003;</div>
-            <div>
-              <span class="chk-name">&#9203; Time of Day #1 &middot; Rush Hour</span>
-              <span class="chk-desc">Within the same hour &mdash; emergency same-hour service</span>
-            </div>
-          </div>
-          <span class="chk-amt">+$100</span>
-        </div>
-        <div class="chk" data-key="offclock" data-amt="15">
-          <div class="chk-left">
-            <div class="chk-box">&#10003;</div>
-            <div>
-              <span class="chk-name">&#127762; Time of Day #2 &middot; Off the Clock</span>
-              <span class="chk-desc">Evening 6 PM&ndash;10 PM or any time Saturday/Sunday. Weekend service includes Friday 10 PM &ndash; Monday 8 AM. Late Night (Clock Strikes Midnight) may also apply and can be added in addition.</span>
-            </div>
-          </div>
-          <span class="chk-amt">+$15</span>
-        </div>
-        <div class="chk" data-key="midnight" data-amt="50">
-          <div class="chk-left">
-            <div class="chk-box">&#10003;</div>
-            <div>
-              <span class="chk-name">&#127769; Time of Day #3 &middot; Clock Strikes Midnight</span>
-              <span class="chk-desc">Late Night 10 PM&ndash;8 AM any day of the week. If this falls on a weekend, Off The Clock may also apply and can be added in addition.</span>
-            </div>
-          </div>
-          <span class="chk-amt">+$50</span>
-        </div>
-        <div class="chk" data-key="redletter" data-amt="50">
-          <div class="chk-left">
-            <div class="chk-box">&#10003;</div>
-            <div>
-              <span class="chk-name">&#128197; Time of Day #4 &middot; Red Letter Day</span>
-              <span class="chk-desc">Federal Holiday. Evening, Late Night, Weekend, and Travel fees may still apply.</span>
-            </div>
-          </div>
-          <span class="chk-amt">+$50</span>
-        </div>
-        <div class="chk" data-key="digitalclock" data-amt="25">
-          <div class="chk-left">
-            <div class="chk-box">&#10003;</div>
-            <div>
-              <span class="chk-name">&#128187; Time of Day #5 &middot; Digital Clock</span>
-              <span class="chk-desc">Remote Online Notarization (RON) Convenience Fee &mdash; notarization completed virtually via secure audio-video platform.</span>
-            </div>
-          </div>
-          <span class="chk-amt">+$25</span>
-        </div>
+  <!-- FOOTER — badges + info -->
+  <footer>
+    <!-- ROW 1: Credentials -->
+    <div class="badges-grid" style="margin-bottom:32px;">
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/3ff339da-4c39-4e75-b38e-db339391c343/Commissioned+Licenced.png" alt="Licensed">
+        <span class="badge-title">Licensed</span><span class="badge-sub">Texas Secretary of State</span>
       </div>
-      <div class="nav">
-        <button class="btn-back" id="back4">&#8592; Back</button>
-        <button class="btn-next" id="next4">Continue &#8594;</button>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/db2b3946-19d6-4f28-b4b0-56551f5af837/Bonded.png" alt="Bonded">
+        <span class="badge-title">Bonded</span><span class="badge-sub">$10,000</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/fcccd073-dcd4-4979-8bdc-a5a4983a5f27/Insured.png" alt="Insured">
+        <span class="badge-title">Insured</span><span class="badge-sub">Errors &amp; Omissions Policy</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/6308566a-0c84-42ec-9181-15de56f6d0e1/Background.png" alt="Background">
+        <span class="badge-title">Background</span><span class="badge-sub">Checked</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/fa65b718-2797-4c01-a9c2-9e269b5b0235/Certified+Loan+Notary.png" alt="Certified">
+        <span class="badge-title">Certified</span><span class="badge-sub">Loan Signer</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/d016a43c-2379-4831-a419-5d885d2afdc8/Texas+RON.png" alt="Texas RON">
+        <span class="badge-title">Texas – RON</span><span class="badge-sub">Remote Online Notary</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/b32994c5-f38e-4665-89cd-d7d586dfa659/ChatGPT+Image+Mar+11%2C+2026%2C+02_51_01+AM.png" alt="HIPAA">
+        <span class="badge-title">Certified</span><span class="badge-sub">HIPPA Compliant</span>
       </div>
     </div>
-  </div>
-
-  <!-- STEP 5: Contact Info -->
-  <div class="step" id="step5">
-    <div class="card">
-      <div class="step-num">Step 5 of 6 &middot; Almost There</div>
-      <div class="step-title">Who&#8217;s Behind the Clock?</div>
-      <div class="step-sub">Just a little more so we can personalize your quote. Phone and email are optional but helpful if you&#8217;d like us to follow up.</div>
-      <label class="field-label" for="clientName">Full Name <span class="req">*</span></label>
-      <input type="text" id="clientName" placeholder="Jane Smith">
-      <div class="addr-status" id="nameStatus"></div>
-      <label class="field-label" for="clientPhone">Phone <span class="opt">(optional)</span></label>
-      <input type="tel" id="clientPhone" placeholder="(817) 555-0100">
-      <label class="field-label" for="clientEmail">Email <span class="opt">(optional)</span></label>
-      <input type="email" id="clientEmail" placeholder="you@example.com">
-      <div class="privacy-note">&#128274; Your information is used only to prepare your quote and to book your appointment. Please visit our <a href="https://roundtheclocknotaryhoodcounty.as.me/schedule/233e6be1" target="_blank">booking site</a> to schedule. We never sell or share your data.</div>
-      <div class="nav">
-        <button class="btn-back" id="back5">&#8592; Back</button>
-        <button class="btn-next" id="next5">Review &amp; Pay Deposit &#8594;</button>
+    <!-- ROW 2: Memberships -->
+    <div class="badges-grid">
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/b5219a3c-bc9b-4f73-b778-e26f60c60f8e/National+Notary+Association+Member.png" alt="AAN">
+        <span class="badge-title">Member</span><span class="badge-sub">American Association of Notaries</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/890df9ed-8174-40e8-bf1a-c94c50df817e/ChatGPT+Image+Mar+11%2C+2026%2C+02_42_28+AM.png" alt="NAN">
+        <span class="badge-title">Member</span><span class="badge-sub">National Association of Notaries</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/6f36daef-86a8-41f2-a25c-f86a51589fdc/Chamber+Member.png" alt="Chamber">
+        <span class="badge-title">Member</span><span class="badge-sub">National Society of Notaries</span>
+      </div>
+      <div class="badge-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/69ace2184fdcfc6bc95c3f6d/e3e24c29-dddf-4e63-a8fc-6f2b9e357677/BBB.png" alt="BBB">
+        <span class="badge-title">Member</span><span class="badge-sub">Granbury Chamber of Commerce</span>
       </div>
     </div>
-  </div>
 
-  <!-- STEP 6: Deposit Payment -->
-  <div class="step" id="step6">
-    <div class="card">
-      <div class="step-num">Step 6 of 7 &middot; Secure Your Spot</div>
-      <div class="step-title">Pay Your Deposit</div>
-      <div class="step-sub">Your deposit holds your appointment. It is applied toward your total balance due at signing.</div>
+    <div class="footer-divider"></div>
 
-      <!-- Quote mini-summary -->
-      <div class="rt" id="paymentSummaryBox" style="margin-bottom:1.25rem">
-        <div class="rt-title">Your Estimate Summary</div>
-        <div class="rt-lines" id="paymentSummaryLines"></div>
-        <div class="rt-div"></div>
-        <div class="rt-total-row">
-          <span class="rt-total-label">Estimated Total</span>
-          <span class="rt-total-val"><sup>$</sup><span id="paymentTotal">0.00</span></span>
-        </div>
-        <div style="margin-top:.5rem;display:flex;justify-content:space-between;align-items:center">
-          <span style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45)">Deposit Due Now</span>
-          <span style="font-family:'Cinzel',serif;font-size:1.4rem;color:#e8c96a" id="paymentDepositAmt">$30.00</span>
-        </div>
-        <div style="margin-top:.25rem;display:flex;justify-content:space-between;align-items:center">
-          <span style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45)">Est. Due at Signing</span>
-          <span style="font-family:'Cinzel',serif;font-size:.95rem;color:rgba(255,255,255,.75)" id="paymentDueAmt">$0.00</span>
-        </div>
+    <div class="footer-bar">
+      <div class="footer-links">
+        <a href="https://laceesharee.github.io/rtc-notary-calculator/">Free Quote</a>
+        <a href="https://roundtheclocknotaryhoodcounty.as.me/">Book Now</a>
+        <a href="tel:8175127217">817-512-7217</a>
+        <a href="mailto:info@roundtheclocknotary.com">Email Us</a>
       </div>
-
-      <!-- Long distance notice -->
-      <div id="longDistNotice" style="display:none;background:rgba(139,31,47,.07);border:1px solid rgba(139,31,47,.2);border-left:3px solid #8b1f2f;border-radius:8px;padding:.85rem 1rem;margin-bottom:1rem;font-family:'DM Sans',sans-serif;font-size:.82rem;color:#3a1820;line-height:1.6">
-        &#128205; <strong>Long Distance Appointment</strong> — Your location is more than 20 miles out. A $75.00 deposit is required to secure long distance appointments.
+      <div class="footer-social">
+        <a href="https://www.facebook.com/roundtheclocknotary" target="_blank" class="social-btn">f</a>
+        <a href="https://www.linkedin.com/company/roundtheclocknotary" target="_blank" class="social-btn">in</a>
       </div>
-
-      <!-- PayPal button container -->
-      <div style="margin-bottom:1rem">
-        <div style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem;text-align:center">Secure Payment via PayPal</div>
-        <div id="paypal-button-container"></div>
-        <div id="paypalMockBtn" style="display:none;text-align:center;margin-top:.5rem">
-          <button onclick="handleMockPayment()" style="width:100%;padding:1rem;background:#0070ba;color:#fff;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:.02em">
-            &#128274; Pay Deposit with PayPal &nbsp;<span id="mockDepositLabel">$30.00</span>
-          </button>
-          <div style="font-size:.7rem;color:var(--muted);margin-top:.4rem">🔒 Secured by PayPal &nbsp;&middot;&nbsp; You will not be charged until payment is confirmed</div>
-        </div>
-      </div>
-
-      <div class="nav">
-        <button class="btn-back" id="back6">&#8592; Back</button>
-      </div>
+      <p class="footer-copy">© 2026 Round The Clock Notary · ByPatience LLC · Hood County, TX · Not an attorney. Not legal advice. Licensed · Bonded · Insured.</p>
     </div>
-  </div>
+  </footer>
 
-  <!-- STEP 7: Confirmation + Book Now -->
-  <div class="step" id="step7">
-    <div class="sum-card">
-      <div class="print-header">
-        <img class="print-logo" src="logo.png" alt="Round the Clock Notary">
-        <div class="print-title">
-          <h2>Round the Clock Notary</h2>
-          <p style="font-weight:700;color:#0e1b3a;text-align:center;margin-top:.3rem;font-size:.8rem">RoundTheClockNotary.com &nbsp;&middot;&nbsp; 817-512-7217 &nbsp;&middot;&nbsp; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a0c9cec6cfe0d2cfd5cec4d4c8c5c3cccfc3cbcecfd4c1d2d98ec3cfcd">[email&#160;protected]</a></p>
-          <p style="color:#555;margin-top:.15rem">Fee Estimate &mdash; Final charges calculated and due at time of service</p>
-        </div>
-      </div>
-      <div class="sum-hdr">
-        <div class="sum-logo"><img src="logo.png" alt="Round the Clock Notary"></div>
-        <!-- Deposit paid banner -->
-        <div id="depositPaidBanner" style="display:none;background:rgba(26,102,68,.25);border:1px solid rgba(26,102,68,.5);border-radius:8px;padding:.5rem 1rem;margin-bottom:.75rem;position:relative">
-          <span style="font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#6fcf97">&#10003; Deposit Paid &nbsp;&middot;&nbsp; </span><span id="depositPaidAmt" style="font-family:'Cinzel',serif;font-size:.68rem;color:#6fcf97"></span>
-        </div>
-        <div class="sum-badge">Fee Estimate</div>
-        <div class="sum-total-lbl">Estimated Total</div>
-        <div class="sum-total-amt"><sup>$</sup><span id="sumTotal">0.00</span></div>
-        <div class="dep-pills">
-          <div class="dep-pill"><span class="dp-lbl">Deposit to Hold Appointment</span><span class="dp-val" id="sumDeposit">$30.00</span></div>
-          <div class="dep-pill hi"><span class="dp-lbl b">Est. Due at Signing</span><span class="dp-val lg" id="sumDue">$0.00</span></div>
-        </div>
-      </div>
-      <div class="sum-body">
-        <div class="sum-sec">Who&#8217;s on the Clock</div>
-        <div id="sumClientInfo" style="margin-bottom:.75rem;font-family:'EB Garamond',serif;font-size:.92rem;color:var(--muted)"></div>
-        <div id="sumLines"></div>
-        <div class="sum-div"></div>
-        <div class="sum-tot-row"><span class="stl">Total Estimate</span><span class="stv" id="sumTotalBottom">$0.00</span></div>
-        <div class="sum-tot-row"><span class="stl">Deposit</span><span class="stv" id="sumDepositBottom">$30.00</span></div>
-        <div class="sum-tot-row"><span class="stl">Est. Due at Signing</span><span class="stv gold" id="sumDueBottom">$0.00</span></div>
-        <div class="disc">
-          <p>&#9888;&#65039; <strong>Estimate only.</strong> Final charges are calculated at the time of service based on notarizations performed, travel distance, wait time, and any additional services. Full payment is due at time of service.</p>
-        </div>
-        <div class="policy"><p>&#128683; <strong style="color:var(--red)">No Call / No Show:</strong> If the notary is not contacted within 15 minutes of the scheduled appointment time, the appointment will be considered a no-show and the deposit will be forfeited.</p></div>
-
-        <!-- Next step: Book on Acuity -->
-        <div style="background:linear-gradient(135deg,#0a1530,#0e1b3a);border-radius:12px;padding:1.25rem;margin-top:1rem;text-align:center">
-          <div style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(201,168,76,.7);margin-bottom:.5rem">Next Step</div>
-          <div style="font-family:'Cinzel',serif;font-size:1rem;color:#e8c96a;margin-bottom:.35rem">Pick Your Appointment Time</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:rgba(255,255,255,.6);margin-bottom:1rem">Your deposit is secured. Now choose your date and time on our scheduling site.</div>
-          <a href="https://roundtheclocknotaryhoodcounty.as.me/schedule/233e6be1" target="_blank" class="act-btn gold" style="display:block;text-decoration:none;padding:1rem">&#128197; Choose My Appointment Time &#8594;</a>
-        </div>
-
-        <div class="actions" style="margin-top:1rem">
-          <div style="display:flex;gap:.75rem">
-            <button class="act-btn ghost" id="previewBtn" style="flex:1">&#128065;&#65039; Preview / Print Quote</button>
-            <button class="act-btn outline" id="startOverBtn" style="flex:1">&#8635; New Quote</button>
-          </div>
-        </div>
-        <div class="followup-sum" id="followupSumRow" style="margin-top:.9rem">
-          <div class="followup-sum-chk" id="followupSumChk"></div>
-          <div style="font-size:.84rem;color:var(--text);line-height:1.5;font-weight:500">&#128222; I would like a follow-up from a notary regarding my appointment needs.</div>
-        </div>
-      </div>
-    </div>
-    <div style="margin-top:1rem">
-      <button class="btn-back" id="back7">&#8592; Back</button>
-    </div>
-  </div>
 </div>
-
-<footer>
-  <p>&#169; 2026 Round the Clock Notary &nbsp;&middot;&nbsp; Hood County, Texas</p>
-  <p style="margin-top:.3rem"><a href="https://www.roundtheclocknotary.com">RoundTheClockNotary.com</a> &nbsp;&middot;&nbsp; <a href="tel:8175127217">817-512-7217</a> &nbsp;&middot;&nbsp; <a href="/cdn-cgi/l/email-protection#4a23242c250a38253f242e3e222f292625292124253e2b383364292527"><span class="__cf_email__" data-cfemail="b4dddad2dbf4c6dbc1dad0c0dcd1d7d8dbd7dfdadbc0d5c6cd9ad7dbd9">[email&#160;protected]</span></a></p>
-</footer>
-
-<!-- PREVIEW MODAL -->
-<div class="modal-overlay" id="previewModal">
-  <div class="modal-box">
-    <div class="modal-header">
-      <img class="modal-header-logo" src="logo.png" alt="Round the Clock Notary">
-      <div class="modal-header-text">
-        <span class="modal-title">Round the Clock Notary</span>
-        <span class="modal-subtitle">Hood County, Texas &nbsp;&middot;&nbsp; Fee Estimate</span>
-        <span style="display:block;font-size:.65rem;color:#fff;margin-top:.25rem;font-family:'DM Sans',sans-serif;font-weight:600;letter-spacing:.02em">RoundTheClockNotary.com &nbsp;&middot;&nbsp; 817-512-7217 &nbsp;&middot;&nbsp; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="deb7b0b8b19eacb1abb0baaab6bbbdb2b1bdb5b0b1aabfaca7f0bdb1b3">[email&#160;protected]</a></span>
-      </div>
-      <button class="modal-close" id="modalClose">&#10005;</button>
-    </div>
-    <div class="modal-body" id="modalBody"></div>
-    <div class="modal-actions">
-      <button class="modal-btn gold" id="modalPrint">&#128424; Print / Save as PDF</button>
-      <button class="modal-btn outline" id="modalCloseBtn">Close</button>
-    </div>
-  </div>
-</div>
-
-<!-- TOS MODAL -->
-<div class="tos-overlay" id="tosModal">
-  <div class="tos-box">
-    <div class="tos-header">
-      <img class="tos-header-logo" src="logo.png" alt="Round the Clock Notary">
-      <div class="tos-header-text">
-        <span class="tos-title">Terms of Service Agreement</span>
-        <span class="tos-subtitle">Rev. 03/2026 &nbsp;&middot;&nbsp; Round The Clock Notary</span>
-      </div>
-      <button class="tos-close" id="tosClose">&#10005;</button>
-    </div>
-    <div class="tos-body">
-      <div class="tos-section">
-        <p>By scheduling an appointment, paying a deposit, or receiving services from Round The Clock Notary, you agree to the following terms and conditions in full.</p>
-      </div>
-      <div class="tos-section">
-        <p><strong>Key points:</strong> A deposit is required to hold all appointments and is non-refundable within 24 hours of the appointment or if service cannot be completed. Travel fees apply once the notary begins travel. Full payment is due at time of service. The notary does not provide legal advice. All signers must present valid government-issued photo ID.</p>
-      </div>
-      <div style="margin:.75rem 0">
-        <button id="tosExpandBtn" style="background:none;border:none;color:var(--gold);font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;padding:0;text-decoration:underline;">&#9660; Read Full Terms of Service</button>
-      </div>
-      <div id="tosFullText" style="display:none">
-        <div class="tos-section"><h4>Service Description</h4><p>Round The Clock Notary provides mobile notary and remote online notarization services in accordance with Texas law. The notary public serves as an impartial witness to the signing of documents and verifies the identity of each signer.</p><p>The notary does not represent any party in the transaction and does not participate in the legal content of documents.</p><p>The State of Texas sets the maximum fee for each notarial act. Travel, scheduling, printing, and convenience services are separate service fees charged in addition to the state-regulated notarial fee.</p></div>
-        <div class="tos-section"><h4>Legal Advice Disclaimer</h4><p>The notary public is not an attorney and does not provide legal advice. The notary will not interpret legal documents, recommend which documents to use, or advise how documents should be completed. If legal advice is required, consult a licensed attorney before scheduling service.</p></div>
-        <div class="tos-section"><h4>No Guarantee of Document Acceptance</h4><p>Round The Clock Notary verifies identity and witnesses signatures. Acceptance of notarized documents by courts, banks, title companies, or government agencies is determined solely by the receiving institution. Round The Clock Notary makes no representation or guarantee that any notarized document will be accepted by any third party.</p></div>
-        <div class="tos-section"><h4>Client Responsibility for Documents</h4><p>Clients are responsible for ensuring all documents are complete and ready for signature before the appointment. The notary does not prepare legal documents and does not determine which notarial act is required. Documents containing blank spaces or incomplete sections cannot be notarized under Texas law. If documents are incomplete or otherwise improper under Texas notary law, the notary must refuse service. Travel fees still apply in this circumstance.</p></div>
-        <div class="tos-section"><h4>Identification Requirements</h4><p>All signers must present valid government-issued photo identification at the time of the appointment. Acceptable identification includes a current driver's license, state identification card, passport, or other identification permitted under Texas law. The name on the identification must reasonably match the name on the document being notarized.</p></div>
-        <div class="tos-section"><h4>Language Requirement</h4><p>Notary services are currently provided only in English. The notary must communicate directly with each signer to confirm identity, willingness, and awareness of the document being signed. If direct communication cannot be established, service will be refused.</p></div>
-        <div class="tos-section"><h4>Deposit and Appointment Policy</h4><p>A deposit is required to secure all appointments and is applied toward the final service total. The deposit becomes non-refundable under the following conditions:</p><ul><li>Cancellation less than 24 hours before the scheduled appointment time</li><li>Signer fails to appear for the appointment</li><li>No call, no show after the 15-minute waiting period beginning at the scheduled appointment time</li><li>Appointment cannot be completed due to missing identification</li><li>Appointment cannot be completed due to incomplete or improper documents</li><li>Signer refuses to proceed after the notary arrives</li></ul><p>If an appointment must be rescheduled due to incomplete documents or missing identification, a new appointment and new deposit are required.</p></div>
-        <div class="tos-section"><h4>Travel Fees</h4><p>Mobile service includes travel time and distance from the notary's point of origin to the appointment location. Travel fees apply once the notary begins travel to the appointment location. Travel fees are non-refundable and still apply in full if the notarization cannot be completed due to missing identification, incomplete documents, signer absence, or refusal to proceed.</p></div>
-        <div class="tos-section"><h4>Wait Time Policy</h4><p>The 15-minute waiting period begins at the scheduled appointment time, not the notary's arrival time. If the signer has not appeared and the notarization has not commenced by the end of the 15-minute window, the visit will be treated as a completed service call and all applicable fees and deposits are forfeited.</p></div>
-        <div class="tos-section"><h4>Bill Estimator</h4><p>The website bill estimator provides an estimate of service cost based on the information entered by the client. Estimates are not guarantees of final cost. Final charges are calculated at the time of service based on the number of notarizations performed, actual travel distance, wait time, and any additional services requested. Full payment is due at the time of service.</p></div>
-        <div class="tos-section"><h4>Right to Refuse Service</h4><p>Texas law requires a notary public to refuse a notarization if: proper identification is not presented; the signer appears unwilling or unaware; the document is incomplete; the requested notarial act violates Texas law; or fraud, coercion, or misrepresentation is suspected. If service is refused for any of these reasons, the appointment will be treated as a completed service visit and the deposit will not be refunded.</p></div>
-        <div class="tos-section"><h4>Remote Online Notarization</h4><p>Online notarizations follow Texas Remote Online Notary requirements. Identity verification, credential analysis, and audio-video recording are required by law. Additional platform fees may apply and are the responsibility of the client.</p></div>
-        <div class="tos-section"><h4>Recordkeeping</h4><p>Texas law requires the notary to maintain a record of each notarization. Information recorded may include the date, type of notarization, document description, identification type, and location of the notarization.</p></div>
-        <div class="tos-section"><h4>Limitation of Liability</h4><p>Round The Clock Notary, the commissioned notary public, and any employees, contractors, or representatives providing services are not responsible for the legal validity, accuracy, or enforceability of the documents being notarized. Clients are solely responsible for the content and legal effect of their documents.</p><p>Liability for any claim related to notarial services is limited to the lesser of: (a) the total fees paid by the client for the specific service giving rise to the claim, or (b) the applicable limits of the notary's Errors and Omissions insurance policy in effect at the time of service.</p><p>In no event shall Round The Clock Notary, the notary public, or any employees, agents, or contractors be liable for any indirect, incidental, consequential, special, or punitive damages, including but not limited to lost profits, lost business opportunities, or downstream document rejection, even if advised of the possibility of such damages.</p></div>
-        <div class="tos-section"><h4>Indemnification</h4><p>Client agrees to indemnify, defend, and hold harmless Round The Clock Notary, its owner, agents, employees, and representatives from and against any claims, damages, losses, costs, or legal fees arising out of or related to: (a) the legal content, accuracy, or use of any document presented for notarization; (b) the client's failure to comply with these terms; or (c) any third-party claim arising from the notarization or the documents involved.</p></div>
-        <div class="tos-section"><h4>Force Majeure</h4><p>Round The Clock Notary shall not be liable for failure or delay in performing services due to circumstances beyond reasonable control, including but not limited to severe weather, illness, road conditions, vehicle failure, natural disaster, or other events outside the notary's reasonable control. In such cases, deposits may be applied toward a rescheduled appointment at the notary's discretion.</p></div>
-        <div class="tos-section"><h4>Governing Law and Dispute Resolution</h4><p>This agreement is governed by the laws of the State of Texas, without regard to conflict of law principles. Any dispute arising from or related to this agreement or the services provided shall first be submitted to good-faith mediation in Hood County, Texas before any legal action is initiated. If mediation is unsuccessful, any legal proceedings shall be brought exclusively in the state or federal courts located in Hood County, Texas, and both parties consent to personal jurisdiction in those courts.</p></div>
-        <div class="tos-section"><h4>Modification of Terms</h4><p>Round The Clock Notary reserves the right to update or modify these Terms of Service at any time. Current terms are posted at RoundTheClockNotary.com. Terms in effect at the time of booking apply to that appointment.</p></div>
-        <div class="tos-section"><h4>Privacy</h4><p>Information collected during scheduling and notarization is used only to provide the requested service and to maintain legally required records. Personal information will not be sold or shared for marketing purposes.</p></div>
-        <div class="tos-section"><h4>Agreement</h4><p>By scheduling an appointment, paying a deposit, or receiving services from Round The Clock Notary, you acknowledge that you have read, understood, and agree to these Terms of Service in full.</p></div>
-        <div style="margin-top:.5rem">
-          <button id="tosCollapseBtn" style="background:none;border:none;color:var(--gold);font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;padding:0;text-decoration:underline;">&#9650; Collapse Terms</button>
-        </div>
-      </div>
-    </div>
-    <div class="tos-footer">
-      <div class="tos-agree-row" id="tosAgreeRow">
-        <div class="tos-chk" id="tosChk"></div>
-        <div class="tos-agree-text">I have read and agree to the Round The Clock Notary Terms of Service Agreement.</div>
-      </div>
-      <div class="tos-btns">
-        <button class="tos-btn cancel" id="tosCancel">Cancel</button>
-        <button class="tos-btn gold" id="tosAgreeBtn">I Agree &mdash; Book Now &#8594;</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-var S = {
-  step:1, address:"", nearestPO:null, dist:0,
-  isFree:false, isFar:false, travelFee:0,
-  serviceType:null, serviceBase:0, serviceLabel:"",
-  stateFee:0, extraTicks:0, minuteSeals:0,
-  print1:0, print2:0, witness:0,
-  surcharges:{}, deposit:30,
-  clientName:"", clientPhone:"", clientEmail:"",
-  followup:false, lastQuote:false,
-  depositPaid:false, paypalOrderId:""
-};
-
-var POS = [
-  {name:"Granbury Post Office",lat:32.447311,lng:-97.786530},
-  {name:"Acton Post Office",lat:32.419700,lng:-97.689700}
-];
-
-var SVC = {
-  second:  {label:"Second Hand",   base:30,  deposit:30, stateFee:10},
-  minute:  {label:"Minute Hand",   base:30,  deposit:30, stateFee:10},
-  bedside: {label:"Bedside Clock", base:75,  deposit:50, stateFee:0},
-  closing: {label:"Closing Table", base:150, deposit:50, stateFee:0}
-};
-
-var SLABELS = {
-  rushhour:"Rush Hour",
-  offclock:"Off the Clock",
-  midnight:"Clock Strikes Midnight",
-  redletter:"Red Letter Day",
-  digitalclock:"Digital Clock (RON)"
-};
-
-function fmt(n){return "$"+n.toFixed(2);}
-
-function updateDeposit(){
-  // Long distance always overrides — $75 flat, no exceptions
-  if(S.isFar){
-    S.deposit=75;
-    return;
-  }
-  // Standard/free zone — service-based deposit
-  if(S.serviceType){
-    S.deposit=SVC[S.serviceType].deposit;
-  }
-}
-
-function distMi(la1,ln1,la2,ln2){
-  var R=3958.8,dLat=(la2-la1)*Math.PI/180,dLng=(ln2-ln1)*Math.PI/180;
-  var a=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(la1*Math.PI/180)*Math.cos(la2*Math.PI/180)*Math.sin(dLng/2)*Math.sin(dLng/2);
-  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
-}
-
-function calcTotal(){
-  var t=S.travelFee+S.serviceBase+S.stateFee;
-  t+=S.extraTicks*10;
-  t+=S.minuteSeals*10;
-  t+=S.print1*1.0;
-  t+=S.print2*1.5;
-  t+=S.witness*20;
-  Object.keys(S.surcharges).forEach(function(k){t+=S.surcharges[k];});
-  return t;
-}
-
-function updateRT(){
-  var lines=[];
-  if(S.isFree) lines.push({k:"Travel — "+S.nearestPO.name,v:"FREE",free:true});
-  else if(S.travelFee>0) lines.push({k:"Hour Hand ("+S.dist.toFixed(1)+" mi RT)",v:fmt(S.travelFee)});
-  if(S.serviceBase>0) lines.push({k:S.serviceLabel,v:fmt(S.serviceBase)});
-  if(S.stateFee>0) lines.push({k:"TX State Fee",v:fmt(S.stateFee)});
-  if(S.extraTicks>0) lines.push({k:"Extra Ticks ("+S.extraTicks+" × $10)",v:fmt(S.extraTicks*10)});
-  if(S.minuteSeals>0) lines.push({k:"Minute Hand Seals ("+S.minuteSeals+" × $10)",v:fmt(S.minuteSeals*10)});
-  if(S.print1>0) lines.push({k:"Single Time ("+S.print1+" pg)",v:fmt(S.print1)});
-  if(S.print2>0) lines.push({k:"Double Time ("+S.print2+" pg)",v:fmt(S.print2*1.5)});
-  if(S.witness>0) lines.push({k:"Watch The Clock ("+S.witness+")",v:fmt(S.witness*20)});
-  Object.keys(S.surcharges).forEach(function(k){lines.push({k:SLABELS[k],v:"+"+fmt(S.surcharges[k])});});
-  var h=lines.length?lines.map(function(l){
-    return "<div class=\"rt-line\"><span>"+l.k+"</span><span class=\"rt-val"+(l.free?" free":"")+"\">" +l.v+"</span></div>";
-  }).join(""):"<div class=\"rt-line\"><span style=\"color:rgba(255,255,255,.28)\">No items yet</span></div>";
-  document.getElementById("rtLines").innerHTML=h;
-  document.getElementById("rtTotalNum").textContent=calcTotal().toFixed(2);
-}
-
-function showStep(n){
-  document.querySelectorAll(".step").forEach(function(s){s.classList.remove("active");});
-  document.getElementById("step"+n).classList.add("active");
-  S.step=n;
-  var pct=((n-1)/6)*100;
-  document.getElementById("progressFill").style.width=pct+"%";
-  document.getElementById("progressLabel").textContent="Step "+n+" of 7";
-  document.getElementById("runningTotal").style.display=(n>1&&n<7)?"block":"none";
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-// Google Maps Places Autocomplete setup
-var gmapsAutocomplete = null;
-var gmapsGeocoder = null;
-var gmapsReady = false;
-
-function initGoogleMaps() {
-  gmapsReady = true;
-  var input = document.getElementById("addressInput");
-  gmapsGeocoder = new google.maps.Geocoder();
-  gmapsAutocomplete = new google.maps.places.Autocomplete(input, {
-    types: ["address"],
-    componentRestrictions: { country: "us" },
-    fields: ["formatted_address", "geometry"]
-  });
-  gmapsAutocomplete.addListener("place_changed", function() {
-    var place = gmapsAutocomplete.getPlace();
-    if (place && place.geometry) {
-      var lat = place.geometry.location.lat();
-      var lng = place.geometry.location.lng();
-      var addr = place.formatted_address || input.value.trim();
-      processCoords(lat, lng, addr);
-    }
-  });
-}
-
-function geocodeFallback(addr) {
-  // Fallback: US Census Bureau geocoder (no key, no CORS issues)
-  var censusUrl = "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=" +
-    encodeURIComponent(addr) + "&benchmark=Public_AR_Current&format=json";
-  return fetch(censusUrl)
-    .then(function(r) { return r.json(); })
-    .then(function(d) {
-      var m = d && d.result && d.result.addressMatches;
-      if (m && m.length) return { lat: m[0].coordinates.y, lng: m[0].coordinates.x };
-      return null;
-    })
-    .catch(function() { return null; });
-}
-
-function processCoords(lat, lng, addr) {
-  var st = document.getElementById("addrStatus");
-  var btn = document.getElementById("addrNextBtn");
-  var nearest = null, nd = Infinity;
-  POS.forEach(function(p) {
-    var d = distMi(lat, lng, p.lat, p.lng);
-    if (d < nd) { nd = d; nearest = p; }
-  });
-  S.address = addr; S.nearestPO = nearest; S.dist = nd;
-  S.isFree = nd <= 5; S.isFar = nd > 20;
-  if (S.isFree) { S.travelFee = 0; }
-  else if (S.isFar) { S.travelFee = Math.max(75, nd * 2 * 0.725); }
-  else { S.travelFee = nd * 2 * 0.725; }
-  updateDeposit();
-  btn.textContent = "Find My Location →"; btn.disabled = false;
-  if (S.isFree) {
-    st.className = "addr-status ok";
-    st.textContent = "✓ Free travel zone — within 5 miles of " + nearest.name + "!";
-  } else if (S.isFar) {
-    st.className = "addr-status ok";
-    st.textContent = "✓ Located · " + nd.toFixed(1) + " mi from " + nearest.name + " · Travel fee: " + fmt(S.travelFee) + " · Long distance deposit: $75.00";
-  } else {
-    st.className = "addr-status ok";
-    st.textContent = "✓ Located · " + nd.toFixed(1) + " mi from " + nearest.name + " · Travel fee: " + fmt(S.travelFee);
-  }
-  updateRT();
-  setTimeout(function() { showStep(2); }, 900);
-}
-
-function handleAddr() {
-  var addr = document.getElementById("addressInput").value.trim();
-  var st = document.getElementById("addrStatus");
-  var btn = document.getElementById("addrNextBtn");
-  if (!addr) { st.className = "addr-status err"; st.textContent = "⚠ Please enter your address."; return; }
-  btn.textContent = "Looking up…"; btn.disabled = true;
-  st.className = "addr-status loading"; st.textContent = "Locating your address…";
-
-  // If Google Maps is loaded and we have a geocoder, use it
-  if (gmapsReady && gmapsGeocoder) {
-    gmapsGeocoder.geocode({ address: addr, region: "us" }, function(results, status) {
-      if (status === "OK" && results[0]) {
-        var loc = results[0].geometry.location;
-        processCoords(loc.lat(), loc.lng(), results[0].formatted_address || addr);
-      } else {
-        // fallback to Census
-        geocodeFallback(addr).then(function(c) {
-          btn.textContent = "Find My Location →"; btn.disabled = false;
-          if (!c) { st.className = "addr-status err"; st.textContent = "⚠ Address not found. Try: 123 Main St, Granbury TX 76048"; return; }
-          processCoords(c.lat, c.lng, addr);
-        });
-      }
-    });
-  } else {
-    // Google Maps not loaded — use Census fallback
-    geocodeFallback(addr).then(function(c) {
-      btn.textContent = "Find My Location →"; btn.disabled = false;
-      if (!c) { st.className = "addr-status err"; st.textContent = "⚠ Address not found. Try: 123 Main St, Granbury TX 76048"; return; }
-      processCoords(c.lat, c.lng, addr);
-    }).catch(function() {
-      btn.textContent = "Find My Location →"; btn.disabled = false;
-      st.className = "addr-status err"; st.textContent = "⚠ Network error. Please try again.";
-    });
-  }
-}
-
-function handleSvc(type){
-  document.querySelectorAll(".opt-btn").forEach(function(b){b.classList.remove("sel");});
-  document.querySelector(".opt-btn[data-service=\""+type+"\"]").classList.add("sel");
-  var svc=SVC[type];
-  S.serviceType=type;S.serviceBase=svc.base;S.serviceLabel=svc.label;
-  S.stateFee=svc.stateFee;S.deposit=svc.deposit;
-  updateDeposit(); // override to $75 if long distance
-  S.extraTicks=0;S.minuteSeals=0;
-  document.getElementById("extraTicksVal").textContent="0";
-  document.getElementById("minuteSealsVal").textContent="0";
-  document.getElementById("extraTicksPrice").textContent="$0.00";
-  document.getElementById("minuteSealsPrice").textContent="$0.00";
-  var isSecond=type==="second",isMinute=type==="minute";
-  var isBedClose=type==="bedside"||type==="closing";
-  // Add-ons 01,02,03 always visible; 05 for Second+Minute; 06 for Minute only
-  document.getElementById("print1Row").style.display="flex";
-  document.getElementById("print2Row").style.display="flex";
-  document.getElementById("witnessRow").style.display="flex";
-  document.getElementById("extraTicksRow").style.display=(isSecond||isMinute)?"flex":"none";
-  document.getElementById("minuteSealsRow").style.display=isMinute?"flex":"none";
-  // Step 3 subtitle
-  var subtitles={
-    second:"Add On #1–03 available for all services. Add On #5 (Extra Ticks) applies to this service.",
-    minute:"All 5 add-ons available for this service — Add On #1–03, 05, and 06.",
-    bedside:"Add On #1–03 available for this service.",
-    closing:"Add On #1–03 available for this service."
-  };
-  document.getElementById("step3Sub").textContent=subtitles[type];
-  updateRT();
-}
-
-function handleCounter(target,dir){
-  var valEl=document.getElementById(target+"Val");
-  var priceEl=document.getElementById(target+"Price");
-  var cur=parseInt(valEl.textContent)||0;
-  cur=Math.max(0,cur+dir);
-  valEl.textContent=cur;
-  S[target]=cur;
-  var prices={extraTicks:10,minuteSeals:10,print1:1.0,print2:1.5,witness:20};
-  var row=document.getElementById(target+"Row");
-  if(cur>0)row.classList.add("on");else row.classList.remove("on");
-  priceEl.textContent=fmt(cur*prices[target]);
-  updateRT();
-}
-
-function buildPaymentStep(){
-  var total=calcTotal();
-  var dep=S.deposit;
-  var due=total-dep;
-
-  // Populate mini-summary lines
-  var lines=[];
-  if(S.isFree) lines.push({k:"Travel",v:"FREE",free:true});
-  else if(S.travelFee>0) lines.push({k:"Travel ("+S.dist.toFixed(1)+" mi RT)",v:fmt(S.travelFee)});
-  lines.push({k:S.serviceLabel,v:fmt(S.serviceBase)});
-  if(S.stateFee>0) lines.push({k:"TX State Notary Fee",v:fmt(S.stateFee)});
-  if(S.extraTicks>0) lines.push({k:"Extra Ticks ("+S.extraTicks+")",v:fmt(S.extraTicks*10)});
-  if(S.minuteSeals>0) lines.push({k:"Minute Seals ("+S.minuteSeals+")",v:fmt(S.minuteSeals*10)});
-  if(S.print1>0) lines.push({k:"Single Print ("+S.print1+" pg)",v:fmt(S.print1)});
-  if(S.print2>0) lines.push({k:"Duplex Print ("+S.print2+" pg)",v:fmt(S.print2*1.5)});
-  if(S.witness>0) lines.push({k:"Witness ("+S.witness+")",v:fmt(S.witness*20)});
-  Object.keys(S.surcharges).forEach(function(k){lines.push({k:SLABELS[k],v:"+"+fmt(S.surcharges[k])});});
-
-  document.getElementById("paymentSummaryLines").innerHTML=lines.map(function(l){
-    return "<div class=\"rt-line\"><span>"+l.k+"</span><span class=\"rt-val"+(l.free?" free":"")+"\">" +l.v+"</span></div>";
-  }).join("");
-  document.getElementById("paymentTotal").textContent=total.toFixed(2);
-  document.getElementById("paymentDepositAmt").textContent=fmt(dep);
-  document.getElementById("paymentDueAmt").textContent=fmt(due);
-  document.getElementById("mockDepositLabel").textContent=fmt(dep);
-
-  // Show long distance notice if applicable
-  document.getElementById("longDistNotice").style.display=S.isFar?"block":"none";
-
-  // Render PayPal or mock button
-  var ppContainer=document.getElementById("paypal-button-container");
-  var mockBtn=document.getElementById("paypalMockBtn");
-  ppContainer.innerHTML="";
-
-  if(window.paypal){
-    mockBtn.style.display="none";
-    ppContainer.style.display="block";
-    window.paypal.Buttons({
-      style:{layout:"vertical",color:"blue",shape:"rect",label:"pay"},
-      createOrder:function(data,actions){
-        return actions.order.create({
-          purchase_units:[{
-            description:"Round the Clock Notary — Appointment Deposit",
-            amount:{value:dep.toFixed(2),currency_code:"USD"}
-          }]
-        });
-      },
-      onApprove:function(data,actions){
-        return actions.order.capture().then(function(details){
-          S.depositPaid=true;
-          S.paypalOrderId=details.id;
-          buildSummary();
-          showStep(7);
-        });
-      },
-      onError:function(err){
-        alert("Payment error. Please try again or call 817-512-7217.");
-      }
-    }).render("#paypal-button-container");
-  } else {
-    // Mock mode — PayPal SDK not loaded yet (replace CLIENT_ID to activate)
-    ppContainer.style.display="none";
-    mockBtn.style.display="block";
-  }
-}
-
-function handleMockPayment(){
-  // MOCK — simulates a successful PayPal payment for testing
-  // Replace YOUR_PAYPAL_CLIENT_ID in the script tag below to go live
-  S.depositPaid=true;
-  S.paypalOrderId="MOCK-"+Date.now();
-  buildSummary();
-  showStep(7);
-}
-
-
-function buildSummary(){
-  var total=calcTotal(),due=total-S.deposit;
-  document.getElementById("sumTotal").textContent=total.toFixed(2);
-  document.getElementById("sumDeposit").textContent=fmt(S.deposit);
-  document.getElementById("sumDue").textContent=fmt(due);
-  document.getElementById("sumTotalBottom").textContent=fmt(total);
-  document.getElementById("sumDepositBottom").textContent=fmt(S.deposit);
-  document.getElementById("sumDueBottom").textContent=fmt(due);
-  // Deposit paid banner
-  var banner=document.getElementById("depositPaidBanner");
-  if(S.depositPaid){banner.style.display="block";document.getElementById("depositPaidAmt").textContent=fmt(S.deposit)+" deposit received";}
-  else{banner.style.display="none";}
-  // Client info display
-  var ci="";
-  if(S.clientName) ci+="<strong>"+S.clientName+"</strong>";
-  if(S.clientPhone) ci+=(ci?"<br>":"")+S.clientPhone;
-  if(S.clientEmail) ci+=(ci?" &nbsp;&middot;&nbsp; ":"")+S.clientEmail;
-
-  document.getElementById("sumClientInfo").innerHTML=ci?ci:"";
-  // Line items
-  var lines=[];
-  if(S.isFree) lines.push({k:"Travel — "+S.nearestPO.name,v:"FREE",free:true});
-  else if(S.travelFee>0) lines.push({k:"Add On #4 · Hour Hand ("+S.dist.toFixed(1)+" mi RT)",v:fmt(S.travelFee)});
-  lines.push({k:S.serviceLabel,v:fmt(S.serviceBase)});
-  if(S.stateFee>0) lines.push({k:"TX State Notary Fee",v:fmt(S.stateFee)});
-  if(S.extraTicks>0) lines.push({k:"Add On #5 · Extra Ticks ("+S.extraTicks+" × $10)",v:fmt(S.extraTicks*10)});
-  if(S.minuteSeals>0) lines.push({k:"Add On #6 · Minute Hand ("+S.minuteSeals+" × $10)",v:fmt(S.minuteSeals*10)});
-  if(S.print1>0) lines.push({k:"Add On #1 · Single Time ("+S.print1+" pg)",v:fmt(S.print1)});
-  if(S.print2>0) lines.push({k:"Add On #2 · Double Time ("+S.print2+" pg)",v:fmt(S.print2*1.5)});
-  if(S.witness>0) lines.push({k:"Add On #3 · Watch The Clock ("+S.witness+" witness)",v:fmt(S.witness*20)});
-  Object.keys(S.surcharges).forEach(function(k){lines.push({k:SLABELS[k],v:"+"+fmt(S.surcharges[k])});});
-  document.getElementById("sumLines").innerHTML=lines.map(function(l){
-    return "<div class=\"sum-line\"><span class=\"sum-key\">"+l.k+"</span><span class=\"sum-val"+(l.free?" free":"")+"\">" +l.v+"</span></div>";
-  }).join("");
-  S.lastQuote=true;
-  // Silent Google Form submission
-  fireFormSubmission();
-}
-
-function fireFormSubmission(){
-  // Replace FORM_ACTION_URL with your Google Form action URL
-  var FORM_URL="https://docs.google.com/forms/d/e/FORM_ID/formResponse";
-  var zone=S.isFree?"Free Zone (within 5 mi)":(S.isFar?"Long Distance (>20 mi)":"Standard (5-20 mi)");
-  var data={
-    "entry.CLIENT_NAME": S.clientName,
-    "entry.CLIENT_PHONE": S.clientPhone,
-    "entry.CLIENT_EMAIL": S.clientEmail,
-    "entry.APPT_ADDRESS": S.address,
-    "entry.SERVICE_TYPE": S.serviceLabel,
-    "entry.MILES_ENTERED": S.dist.toFixed(1),
-    "entry.ZONE": zone,
-    "entry.MOBILE_FEE": S.serviceBase.toFixed(2),
-    "entry.STATE_FEE": S.stateFee.toFixed(2),
-    "entry.TRAVEL_FEE": S.travelFee.toFixed(2),
-    "entry.EVENING_SURCHARGE": (S.surcharges.offclock||0).toFixed(2),
-    "entry.LATE_NIGHT_SURCHARGE": (S.surcharges.midnight||0).toFixed(2),
-    "entry.WEEKEND_SURCHARGE": "0.00",
-    "entry.HOLIDAY_SURCHARGE": (S.surcharges.redletter||0).toFixed(2),
-    "entry.EMERGENCY_SURCHARGE": (S.surcharges.rushhour||0).toFixed(2),
-    "entry.PRINT1_QTY": S.print1,
-    "entry.PRINT2_QTY": S.print2,
-    "entry.EXTRA_SIG_QTY": S.extraTicks,
-    "entry.WITNESS_QTY": S.witness,
-    "entry.TOTAL_CHARGES": calcTotal().toFixed(2),
-    "entry.DEPOSIT_REQUIRED": S.deposit.toFixed(2),
-    "entry.EST_BALANCE_DUE": (calcTotal()-S.deposit).toFixed(2),
-    "entry.FOLLOWUP_REQUESTED": S.followup?"Yes":"No"
-  };
-  var params=Object.keys(data).map(function(k){return encodeURIComponent(k)+"="+encodeURIComponent(data[k]);}).join("&");
-  var img=new Image();
-  img.src=FORM_URL+"?"+params;
-}
-
-function startOver(){
-  S={step:1,address:"",nearestPO:null,dist:0,isFree:false,isFar:false,travelFee:0,serviceType:null,serviceBase:0,serviceLabel:"",stateFee:0,extraTicks:0,minuteSeals:0,print1:0,print2:0,witness:0,surcharges:{},deposit:30,clientName:"",clientPhone:"",clientEmail:"",followup:false,lastQuote:false,depositPaid:false,paypalOrderId:""};
-  // deposit will be recalculated by updateDeposit() when address/service selected
-  document.getElementById("addressInput").value="";
-  document.getElementById("addrStatus").textContent="";
-  document.getElementById("addrStatus").className="addr-status";
-  document.getElementById("clientName").value="";
-  document.getElementById("clientPhone").value="";
-  document.getElementById("clientEmail").value="";
-  document.getElementById("nameStatus").textContent="";
-  document.querySelectorAll(".opt-btn").forEach(function(b){b.classList.remove("sel");});
-  ["extraTicks","minuteSeals","print1","print2","witness"].forEach(function(t){
-    document.getElementById(t+"Val").textContent="0";
-    document.getElementById(t+"Price").textContent="$0.00";
-    document.getElementById(t+"Row").classList.remove("on");
-  });
-  document.querySelectorAll(".chk").forEach(function(c){
-    c.classList.remove("on");
-    c.querySelector(".chk-box").style.color="transparent";
-  });
-  document.getElementById("followupSumChk").classList.remove("on");
-  document.getElementById("followupSumRow").classList.remove("on");
-  showStep(1);
-}
-
-document.addEventListener("DOMContentLoaded",function(){
-  // Step 1
-  document.getElementById("addrNextBtn").addEventListener("click",handleAddr);
-  document.getElementById("addressInput").addEventListener("keydown",function(e){if(e.key==="Enter")handleAddr();});
-
-  // Step 2
-  document.querySelectorAll(".opt-btn").forEach(function(b){
-    b.addEventListener("click",function(){handleSvc(this.dataset.service);});
-  });
-  document.getElementById("back2").addEventListener("click",function(){showStep(1);});
-  document.getElementById("next2").addEventListener("click",function(){
-    if(!S.serviceType){alert("Please select a service to continue.");return;}
-    showStep(3);
-  });
-
-  // Step 3
-  document.querySelectorAll(".ctr-btn").forEach(function(b){
-    b.addEventListener("click",function(){handleCounter(this.dataset.target,parseInt(this.dataset.dir));});
-  });
-  document.getElementById("back3").addEventListener("click",function(){showStep(2);});
-  document.getElementById("next3").addEventListener("click",function(){showStep(4);});
-
-  // Step 4
-  document.querySelectorAll(".chk").forEach(function(c){
-    c.addEventListener("click",function(){
-      var key=this.dataset.key,amt=parseInt(this.dataset.amt);
-      this.classList.toggle("on");
-      var box=this.querySelector(".chk-box");
-      if(this.classList.contains("on")){S.surcharges[key]=amt;box.style.color="#fff";}
-      else{delete S.surcharges[key];box.style.color="transparent";}
-      updateRT();
-    });
-  });
-  document.getElementById("back4").addEventListener("click",function(){showStep(3);});
-  document.getElementById("next4").addEventListener("click",function(){showStep(5);});
-
-  // Step 5 — contact info
-  document.getElementById("back5").addEventListener("click",function(){showStep(4);});
-  document.getElementById("next5").addEventListener("click",function(){
-    var name=document.getElementById("clientName").value.trim();
-    var st=document.getElementById("nameStatus");
-    if(!name){st.className="addr-status err";st.textContent="⚠ Please enter your name to continue.";return;}
-    st.className="addr-status";st.textContent="";
-    S.clientName=name;
-    S.clientPhone=document.getElementById("clientPhone").value.trim();
-    S.clientEmail=document.getElementById("clientEmail").value.trim();
-    buildPaymentStep();
-    showStep(6);
-  });
-
-  // Step 6 — payment
-  document.getElementById("back6").addEventListener("click",function(){showStep(5);});
-
-  // Step 7 — confirmation
-  document.getElementById("back7").addEventListener("click",function(){showStep(6);});
-  document.getElementById("startOverBtn").addEventListener("click",startOver);
-
-  // Follow-up checkbox
-  document.getElementById("followupSumRow").addEventListener("click",function(){
-    S.followup=!S.followup;
-    document.getElementById("followupSumChk").classList.toggle("on",S.followup);
-    this.classList.toggle("on",S.followup);
-  });
-
-  // Preview modal
-  document.getElementById("previewBtn").addEventListener("click",function(){
-    if(!S.lastQuote)return;
-    var total=calcTotal(),due=total-S.deposit;
-    var lines=[];
-    if(S.isFree) lines.push({k:"Travel — "+S.nearestPO.name,v:"FREE",free:true});
-    else if(S.travelFee>0) lines.push({k:"Hour Hand ("+S.dist.toFixed(1)+" mi RT)",v:fmt(S.travelFee)});
-    lines.push({k:S.serviceLabel,v:fmt(S.serviceBase)});
-    if(S.stateFee>0) lines.push({k:"TX State Notary Fee",v:fmt(S.stateFee)});
-    if(S.extraTicks>0) lines.push({k:"Extra Ticks ("+S.extraTicks+" × $10)",v:fmt(S.extraTicks*10)});
-    if(S.minuteSeals>0) lines.push({k:"Minute Hand ("+S.minuteSeals+" × $10)",v:fmt(S.minuteSeals*10)});
-    if(S.print1>0) lines.push({k:"Single Time ("+S.print1+" pg)",v:fmt(S.print1)});
-    if(S.print2>0) lines.push({k:"Double Time ("+S.print2+" pg)",v:fmt(S.print2*1.5)});
-    if(S.witness>0) lines.push({k:"Watch The Clock ("+S.witness+" witness)",v:fmt(S.witness*20)});
-    Object.keys(S.surcharges).forEach(function(k){lines.push({k:SLABELS[k],v:"+"+fmt(S.surcharges[k])});});
-    var today=new Date().toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"});
-    var body="";
-    if(S.clientName) body+="<p style=\"font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:.1rem\">"+S.clientName+"</p>";
-    var contactLine="";
-    if(S.clientPhone) contactLine+=S.clientPhone;
-    if(S.clientEmail) contactLine+=(contactLine?" &nbsp;&middot;&nbsp; ":"")+S.clientEmail;
-    if(contactLine) body+="<p style=\"font-size:.75rem;color:#555;margin-bottom:.1rem\">"+contactLine+"</p>";
-    body+="<p style=\"font-size:.75rem;color:#6b7280;margin-bottom:.35rem\">"+today+" &middot; "+S.address+"</p>";
-
-    body+=lines.map(function(l){return"<div class=\"modal-line\"><span class=\"modal-key\">"+l.k+"</span><span class=\"modal-val"+(l.free?" free":"")+"\">" +l.v+"</span></div>";}).join("");
-    body+="<div class=\"modal-divider\"></div>";
-    body+="<div class=\"modal-total\"><span class=\"modal-total-lbl\">Total Estimate</span><span class=\"modal-total-val\">"+fmt(total)+"</span></div>";
-    body+="<div class=\"modal-total\"><span class=\"modal-total-lbl\">Deposit to Hold</span><span class=\"modal-total-val\">"+fmt(S.deposit)+"</span></div>";
-    body+="<div class=\"modal-total\"><span class=\"modal-total-lbl\">Est. Due at Signing</span><span class=\"modal-total-val gold\">"+fmt(due)+"</span></div>";
-    body+="<div class=\"modal-notice\"><p><strong>Estimate only.</strong> Final charges calculated and due in full at time of service.</p><p>&#128274; <strong>FREE QUOTE TOOL ONLY</strong> &mdash; not a booking system. To book visit <a href=\"https://roundtheclocknotaryhoodcounty.as.me/schedule/233e6be1\" target=\"_blank\" style=\"color:#c9a84c\">our scheduling site</a>.</p></div>";
-    body+="<div class=\"modal-policy\"><strong style=\"color:#8b1f2f\">No Call / No Show:</strong> Deposit forfeited if notary not contacted within 15 minutes of appointment.</div>";
-    document.getElementById("modalBody").innerHTML=body;
-    document.getElementById("previewModal").classList.add("open");
-  });
-  document.getElementById("modalClose").addEventListener("click",function(){document.getElementById("previewModal").classList.remove("open");});
-  document.getElementById("modalCloseBtn").addEventListener("click",function(){document.getElementById("previewModal").classList.remove("open");});
-  document.getElementById("modalPrint").addEventListener("click",function(){window.print();});
-  document.getElementById("previewModal").addEventListener("click",function(e){if(e.target===this)this.classList.remove("open");});
-
-  // TOS modal (accessible from preview modal if needed)
-  document.getElementById("tosCancel").addEventListener("click",function(){document.getElementById("tosModal").classList.remove("open");});
-  document.getElementById("tosClose").addEventListener("click",function(){document.getElementById("tosModal").classList.remove("open");});
-  document.getElementById("tosModal").addEventListener("click",function(e){if(  document.getElementById("tosModal").addEventListener("click",function(e){if(e.target===this)this.classList.remove("open");});
-  document.getElementById("tosExpandBtn").addEventListener("click",function(){
-    document.getElementById("tosFullText").style.display="block";
-    this.style.display="none";
-  });
-  document.
+function toggle(btn) {
+  const item = btn.closest('.accordion-item');
+  c
